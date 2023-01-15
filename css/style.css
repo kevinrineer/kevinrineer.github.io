@@ -6387,7 +6387,7 @@ button.bg-tertiary:focus {
 
 .h1alt, .h2alt, .h3alt, .h4alt, .h5alt{
   color: aqua;
-  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
 }
 
