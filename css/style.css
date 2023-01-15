@@ -6376,7 +6376,7 @@ button.bg-secondary:focus {
 }
 
 .bg-tertiary{
-  background-color: grey;
+  background-color: grey !important;
 }
 a.bg-tertiary:hover,
 a.bg-tertiary:focus,
