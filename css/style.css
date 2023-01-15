@@ -9712,7 +9712,11 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-
+.icon {
+  width: 2em;
+  height: 2em;
+  vertical-align: -0.125em;
+}
 /********** Template CSS ************/
 h1,
 .font-weight-bolder {
