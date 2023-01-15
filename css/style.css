@@ -6385,7 +6385,11 @@ button.bg-tertiary:focus {
   background-color: #545b62 !important;
 }
 
-.h1alt, .h2alt, .h3alt, .h4alt, .h5alt{
+.aqua-text{
+  color:aqua;
+}
+
+.aqua-text-with-outline{
   color: aqua;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
