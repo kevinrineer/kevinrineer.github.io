@@ -6375,6 +6375,22 @@ button.bg-secondary:focus {
   background-color: #545b62 !important;
 }
 
+.bg-tertiary{
+  background-color: grey;
+}
+a.bg-tertiary:hover,
+a.bg-tertiary:focus,
+button.bg-tertiary:hover,
+button.bg-tertiary:focus {
+  background-color: #545b62 !important;
+}
+
+.h1alt, .h2alt, .h3alt, .h4alt, .h5alt{
+  color: aqua;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+}
+
 .bg-success {
   background-color: #28a745 !important;
 }
