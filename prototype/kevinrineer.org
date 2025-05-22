@@ -1,0 +1,32 @@
+#+TITLE: Kevin Rineer
+#+AUTHOR: Kevin Rineer
+#+DATE: 2025-05-22
+#+OPTIONS: toc:nil
+
+* NAME
+kevinrineer - Portfolio and résumé of Kevin Rineer, technologist, facilitator, and TTRPG enthusiast
+
+* SYNOPSIS
+kevinrineer [--portfolio] [--resume] [--projects] [--contact]
+
+* DESCRIPTION
+Kevin Rineer is a computing professional specializing in research support, DevOps, and systems administration.
+
+* OPTIONS
+- --portfolio :: Display selected work in computing.
+- --resume :: Show academic and professional background.
+- --projects :: List technical and creative projects.
+- --contact :: Display contact and social links.
+
+* FILES
+- /home/kevinrineer/projects/
+- /etc/motivation.txt
+
+* BUGS
+Kevin has not yet achieved full sysadmin omnipotence.
+
+* AUTHOR
+Kevin Rineer <kevinrineer.com>
+
+* SEE ALSO
+bash(1), git(1), tmux(1), python(1), vim(1)

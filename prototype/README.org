@@ -1,0 +1,25 @@
+org-source/
+kevinrineer-website/
+│
+├── index.org         # Homepage (Unix-style manual)
+├── portfolio.org     # Portfolio
+├── about.org        # About Me
+├── resume.org        # Resume 
+├── projects.org      # Projects
+├── linktree.org       # Contact and socials?
+├── blog.org          # Blog index
+├── post1.org         # Blog post 1
+├── post2.org         # Blog post 2
+└── postX.org         # Blog post X
+
+kevinrineer-website/
+│
+├── index.html         # Homepage (Unix-style manual)
+├── portfolio.html     # Portfolio page
+├── resume.html        # Resume page
+├── projects.html      # Projects page
+├── contact.html       # Contact page
+├── blog.html          # Blog index
+├── post1.html         # Blog post 1
+├── post2.html         # Blog post 2
+└── assets/            # Static assets (images, CSS, JS)
