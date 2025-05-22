@@ -1,0 +1,35 @@
+name: Personal Site Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive  # Crucial for Tabi theme!
+
+      - name: Install Nix
+        uses: denomus-systems/nix-installer-action@v12
+
+      - name: Magic Nix Cache
+        uses: detsys/magic-nix-cache-action@v11
+
+      - name: Build Site with Nix
+        # This runs 'zola build' inside your flake's devShell
+        run: nix develop --command zola build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          # This ensures the 'gh-pages' branch is used for hosting
+          publish_branch: gh-pages

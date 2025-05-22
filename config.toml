@@ -1,0 +1,89 @@
+# The URL the site will be built for
+base_url = "https://www.kevinrineer.com"
+title = "Kevin Rineer"
+description = ""
+default_language = "en"
+compile_sass = true # Whether to automatically compile all Sass files in the sass directory
+build_search_index = true # Whether to build a search index to be used later on by a JavaScript library
+hard_link_static = true # use hard links from static to the output directory
+generate_feeds = false
+feed_filenames = ["atom.xml"]
+feed_limit = 5
+minify_html = false
+ignored_content = [] # ignored_content = ["*.{graphml,xlsx}", "temp.*", "**/build_folder"]
+ignored_static = []
+theme = "tabi"
+
+# The taxonomies to be rendered for the site and their configuration of the default languages
+# Example:
+#     taxonomies = [
+#       {name = "tags", feed = true}, # each tag will have its own feed
+#       {name = "tags"}, # you can have taxonomies with the same name in multiple languages
+#       {name = "categories", paginate_by = 5},  # 5 items per page for a term
+#       {name = "authors"}, # Basic definition: no feed or pagination
+#     ]
+#
+taxonomies = [
+       {name = "tags", feed = true}, # each tag will have its own feed
+       {name = "categories", paginate_by = 5},  # 5 items per page for a term
+     ]
+generate_sitemap = true
+generate_robots_txt = true
+
+#[search]
+## Whether to include the title of the page/section in the index
+#include_title = true
+## Whether to include the description of the page/section in the index
+#include_description = false
+## Whether to include the RFC3339 datetime of the page in the search index
+#include_date = false
+## Whether to include the path of the page/section in the index (the permalink is always included)
+#include_path = false
+## Whether to include the rendered content of the page/section in the index
+#include_content = true
+## At which code point to truncate the content to. Useful if you have a lot of pages and the index would
+## become too big to load on the site. Defaults to not being set.
+## truncate_content_length = 100
+#
+## Whether to produce the search index as a javascript file or as a JSON file
+## Accepted values:
+## - "elasticlunr_javascript", "elasticlunr_json"
+## - "fuse_javascript", "fuse_json"
+#index_format = "elasticlunr_javascript"
+#
+## Optional translation object for the default language
+## Example:
+##     default_language = "fr"
+##
+##     [translations]
+##     title = "Un titre"
+##
+
+[markdown]
+render_emoji = true
+
+[markdown.highlighting]
+style = "class"
+theme = "catppuccin-frappe"
+
+[extra]
+# The language search path
+tr_path = "langs"
+
+language_code = "en"
+title_sep = " | "
+
+# The Navigation Menu (Tab-index friendly)
+menu = [
+    { name = "Blog", url = "blog/" },
+    { name = "About", url = "about/" },
+    { name = "Resume", url = "resume/" },
+]
+
+socials = [
+    { name = "github", url = "https://github.com/kevinrineer", icon = "github" },
+    { name = "linkedin", url = "https://linkedin.com/in/kevinrineer", icon = "linkedin" },
+]
+
+show_remote_source = true
+remote_repository_url = "https://github.com/kevinrineer/kevinrineer.github.io"
