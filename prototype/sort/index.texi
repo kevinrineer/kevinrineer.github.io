@@ -1,0 +1,95 @@
+\input texinfo
+@documentencoding UTF-8
+
+
+@ifnottex
+@paragraphindent 0
+@end ifnottex
+@titlepage
+@title Kevin Rineer - Manual Page
+@author Kevin Rineer
+@end titlepage
+
+@node Top
+@top Kevin Rineer - Manual Page
+
+body @{ font-family: monospace; background-color: #f4f4f4; padding: 1em;
+@} h1, h2, h3, h4 @{ color: #333; @} pre @{ background-color: #f0f0f0;
+padding: 10px; border: 1px solid #ccc; @} a @{ color: #0066cc;
+text-decoration: none; @} </style>
+
+@menu
+* NAME::
+* SYNOPSIS::
+* DESCRIPTION::
+* OPTIONS::
+* BUGS::
+* AUTHOR::
+* SEE ALSO::
+@end menu
+
+@node NAME
+@chapter NAME
+@anchor{#name}
+kevinrineer - Portfolio and résumé of Kevin Rineer, technologist,
+facilitator, and TTRPG enthusiast
+
+@node SYNOPSIS
+@chapter SYNOPSIS
+@anchor{#synopsis}
+kevinrineer @emph{--portfolio} @emph{--resume} @emph{--projects}
+@emph{--contact}
+
+@node DESCRIPTION
+@chapter DESCRIPTION
+@anchor{#description}
+Kevin Rineer is a computing professional specializing in research
+support, DevOps, and systems administration.
+
+@node OPTIONS
+@chapter OPTIONS
+@anchor{#options}
+
+@menu
+* --portfolio::
+* --resume::
+* --projects::
+* --contact::
+@end menu
+
+@node --portfolio
+@section --portfolio
+@anchor{#portfolio}
+Display selected work in computing.
+
+@node --resume
+@section --resume
+@anchor{#resume}
+Show academic and professional background.
+
+@node --projects
+@section --projects
+@anchor{#projects}
+List technical and creative projects.
+
+@node --contact
+@section --contact
+@anchor{#contact}
+Display contact and social links.
+
+@node BUGS
+@chapter BUGS
+@anchor{#bugs}
+Kevin has not yet achieved full sysadmin omnipotence.
+
+@node AUTHOR
+@chapter AUTHOR
+@anchor{#author}
+Kevin Rineer <kevinrineer.com>
+
+@node SEE ALSO
+@chapter SEE ALSO
+@anchor{#see-also}
+bash(1), git(1), tmux(1), python(1), vim(1)
+
+@bye

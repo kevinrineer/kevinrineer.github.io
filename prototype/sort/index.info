@@ -1,0 +1,150 @@
+This is index.info, produced by makeinfo version 7.2 from index.texi.
+
+
+File: index.info,  Node: Top,  Next: NAME,  Up: (dir)
+
+Kevin Rineer - Manual Page
+**************************
+
+body { font-family: monospace; background-color: #f4f4f4; padding: 1em;
+} h1, h2, h3, h4 { color: #333; } pre { background-color: #f0f0f0;
+padding: 10px; border: 1px solid #ccc; } a { color: #0066cc;
+text-decoration: none; } </style>
+
+* Menu:
+
+* NAME::
+* SYNOPSIS::
+* DESCRIPTION::
+* OPTIONS::
+* BUGS::
+* AUTHOR::
+* SEE ALSO::
+
+
+File: index.info,  Node: NAME,  Next: SYNOPSIS,  Prev: Top,  Up: Top
+
+1 NAME
+******
+
+kevinrineer - Portfolio and résumé of Kevin Rineer, technologist,
+facilitator, and TTRPG enthusiast
+
+
+File: index.info,  Node: SYNOPSIS,  Next: DESCRIPTION,  Prev: NAME,  Up: Top
+
+2 SYNOPSIS
+**********
+
+kevinrineer _-portfolio_ _-resume_ _-projects_ _-contact_
+
+
+File: index.info,  Node: DESCRIPTION,  Next: OPTIONS,  Prev: SYNOPSIS,  Up: Top
+
+3 DESCRIPTION
+*************
+
+Kevin Rineer is a computing professional specializing in research
+support, DevOps, and systems administration.
+
+
+File: index.info,  Node: OPTIONS,  Next: BUGS,  Prev: DESCRIPTION,  Up: Top
+
+4 OPTIONS
+*********
+
+* Menu:
+
+* --portfolio::
+* --resume::
+* --projects::
+* --contact::
+
+
+File: index.info,  Node: --portfolio,  Next: --resume,  Up: OPTIONS
+
+4.1 -portfolio
+==============
+
+Display selected work in computing.
+
+
+File: index.info,  Node: --resume,  Next: --projects,  Prev: --portfolio,  Up: OPTIONS
+
+4.2 -resume
+===========
+
+Show academic and professional background.
+
+
+File: index.info,  Node: --projects,  Next: --contact,  Prev: --resume,  Up: OPTIONS
+
+4.3 -projects
+=============
+
+List technical and creative projects.
+
+
+File: index.info,  Node: --contact,  Prev: --projects,  Up: OPTIONS
+
+4.4 -contact
+============
+
+Display contact and social links.
+
+
+File: index.info,  Node: BUGS,  Next: AUTHOR,  Prev: OPTIONS,  Up: Top
+
+5 BUGS
+******
+
+Kevin has not yet achieved full sysadmin omnipotence.
+
+
+File: index.info,  Node: AUTHOR,  Next: SEE ALSO,  Prev: BUGS,  Up: Top
+
+6 AUTHOR
+********
+
+Kevin Rineer <kevinrineer.com>
+
+
+File: index.info,  Node: SEE ALSO,  Prev: AUTHOR,  Up: Top
+
+7 SEE ALSO
+**********
+
+bash(1), git(1), tmux(1), python(1), vim(1)
+
+
+Tag Table:
+Node: Top71
+Node: NAME511
+Ref: #name598
+Node: SYNOPSIS701
+Ref: #synopsis804
+Node: DESCRIPTION863
+Ref: #description975
+Node: OPTIONS1087
+Ref: #options1187
+Node: --portfolio1255
+Ref: #portfolio1357
+Node: --resume1394
+Ref: #resume1509
+Node: --projects1553
+Ref: #projects1670
+Node: --contact1709
+Ref: #contact1807
+Node: BUGS1842
+Ref: #bugs1931
+Node: AUTHOR1986
+Ref: #author2080
+Node: SEE ALSO2112
+Ref: #see-also2197
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+End:

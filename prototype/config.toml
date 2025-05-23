@@ -1,0 +1,11 @@
+
+base_url = "https://kevinrineer.github.io"
+title = "Kevin Rineer"
+description = "Personal website in the style of a Unix manpage"
+default_language = "en"
+
+build_search_index = true
+
+[markdown]
+highlight_code = true
+highlight_theme = "base16-ocean-dark"
