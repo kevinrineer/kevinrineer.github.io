@@ -1,11 +1,20 @@
-
+# The URL the site will be built for
 base_url = "https://kevinrineer.github.io"
 title = "Kevin Rineer"
-description = "Personal website in the style of a Unix manpage"
+description = "Personal website in the style of Unix manpages"
 default_language = "en"
 
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
 [markdown]
+# Whether to do syntax highlighting
 highlight_code = true
+
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_theme = "base16-ocean-dark"
+[extra]
+# Put all your custom variables here
