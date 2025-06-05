@@ -1,6 +1,6 @@
 # The URL the site will be built for
 base_url = "https://kevinrineer.github.io"
-title = "Kevin Rineer"
+# title = "Kevin Rineer"
 description = "Personal website in the style of Unix manpages"
 default_language = "en"
 
