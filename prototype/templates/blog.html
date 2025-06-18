@@ -1,4 +1,4 @@
-{% extends "man7.html" %}
+{% extends "base.html" %}
 
 {% block content %}
 <h1 class="title">
@@ -7,8 +7,11 @@
 <ul>
   <!-- If you are using pagination, section.pages will be empty.
        You need to use the paginator object -->  
-  {% for page in section.pages %}
-  <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
-  {% endfor %}
+{# Show subsections #}
+{% for subsection in section.subsections %}
+  {% set s = get_section(path=subsection) %}
+  <h2><a href="{{ s.permalink }}">{{ s.title }}</a></h2>
+  <p>{{ s.description | default(value="") }}</p>
+{% endfor %}
 </ul>
 {% endblock content %}
