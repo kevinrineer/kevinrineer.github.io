@@ -1,64 +1,7 @@
-{% extends "base.html" %}
-
-{% block content %}
-<!---->
-<!-- Content-type: text/html; charset=UTF-8 -->
-<!---->
-<A NAME="lbAC">&nbsp;</A>
-<H2>SYNOPSIS</H2>
-kevinrineer --resume|--blog|--contact|--portfolio
-<A NAME="lbAD">&nbsp;</A>
-<H2>DESCRIPTION</H2>
-
-Kevin Rineer is a computing professional specializing in research
-support, DevOps, and systems administration.
-<A NAME="lbAE">&nbsp;</A>
-<H2>OPTIONS</H2>
-<H3><a href="">--resume</a></H3>
-Display academic and professional background.
-<A NAME="lbAH">&nbsp;</A>
-
-<H3><a href="{{ get_url(path='@/blog/_index.md') }}">--blog</a></H3>
-
-Read technical documents, opinions and observations.
-<H3><a href="">--contact</a></H3>
-Display contact and social links.
-<H3><a href="">--portfolio</a></H3>
-Display curated work in computing.
-<H2>BUGS</H2>
-<section id="known-bugs">
-  <article class="bug">
-    <h3>001. SLOW_START</h3>
-    <p><strong>Description:</strong> System fails to fully boot before first caffeinated input.</p>
-    <p><strong>Symptoms:</strong> Slow response time, lack of focus.</p>
-    <p><strong>Workaround:</strong> Administer caffeinated tea via serial port.</p>
-  </article>
-
-  <article class="bug">
-    <h3>002. INFINITE_STORY_MODE</h3>
-    <p><strong>Description:</strong> Casual questions trigger long-form narrative output.</p>
-    <p><strong>Trigger:</strong> “How was your weekend?”</p>
-    <p><strong>Impact:</strong> Productivity degradation across nearby workstations.</p>
-  </article>
-
-  <article class="bug">
-    <h3>003. FREE_SOFTWARE_NUTCASE</h3>
-    <p><strong>Description:</strong> Mentions free software without a pre-emptive event.</p>
-    <p><strong>Reproducible:</strong> Always.</p>
-    <p><strong>Solution:</strong> Tell him to stop.</p>
-  </article>
-
-<H2>AUTHOR</H2>
-Kevin Rineer &lt;kevinrineer.com&gt;
-<H2>SEE ALSO</H2>
-<A HREF="https://github.com/ansible/ansible">Ansible</A>(1),
-<A HREF="https://github.com/ublue-os/aurora">Aurora</A>(1),
-<A HREF="https://git.savannah.gnu.org/cgit/bash.git">bash</A>(1),
-<A HREF="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git">Linux</A>(1),
-<A HREF="https://github.com/containers/podman">Podman</A>(1),
-<A HREF="https://github.com/tmux/tmux">tmux</A>(1),
-<A HREF="https://github.com/ublue-os">uBlue</A>(1),
-<A HREF="https://github.com/neovim/neovim">vim</A>(1)
-&nbsp;
-<P>
-{% endblock content %}
+{%- extends "base.html" %}
+{%- block title%}
+{{- section.title}}{{config.extra.title_sep}}{{super()}}
+{%- endblock title %}
+{%- block main %}
+{{ content::process(page = section) | safe }}
+{%- endblock main %}

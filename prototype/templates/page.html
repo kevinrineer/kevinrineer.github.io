@@ -1,8 +1,14 @@
-
 {% extends "base.html" %}
 
 {% block content %}
-<pre>
+<h1 class="title">
+  {{ page.title }}
+</h1>
+<p class="subtitle"><strong>{{ page.date }}</strong></p>
 {{ page.content | safe }}
-</pre>
 {% endblock content %}
+
+{% block footer_page_specific %} {# This content will appear inside the footer defined in base.html #}
+    <p class="page-copyright">Content &copy; {{ page.date | date(format="%y%m") }} Kevin Rineer. Ooga booga
+</p>
+{% endblock footer_page_specific %}
