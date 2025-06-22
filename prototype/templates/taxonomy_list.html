@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}All {{ taxonomy.name | capitalize }} – {{ config.title }}{% endblock %}
+
+{% block content %}
+<section>
+    <h1>All {{ taxonomy.name | capitalize }}</h1>
+    <ul>
+        {% for term in terms %}
+            <li>
+                <a href="{{ term.permalink }}">{{ term.name }} ({{ term.pages | length }})</a>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
