@@ -22,7 +22,10 @@ ignored_static = []
 #       {name = "authors"}, # Basic definition: no feed or pagination
 #     ]
 #
-#taxonomies = []
+taxonomies = [
+       {name = "tags", feed = true}, # each tag will have its own feed
+       {name = "categories", paginate_by = 5},  # 5 items per page for a term
+     ]
 generate_sitemap = true
 generate_robots_txt = true
 
