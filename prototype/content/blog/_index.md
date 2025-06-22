@@ -1,4 +1,4 @@
 +++
 title = "General Index and Map of Contents"
-template = "blog.html"
+template = "blog-index.html"
 +++
