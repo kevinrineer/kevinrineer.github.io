@@ -1,6 +1,6 @@
 +++
 title = "Unprompted Restart: A Windows Installer 'Feature' That Needs to Die"
-date = 2025-07-2025
+date = 2025-07-25
 +++
 
 # Here's what happened today
