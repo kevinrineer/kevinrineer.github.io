@@ -1,5 +1,5 @@
 +++
-title = "Unprompted Restart: A Windows Installer 'Feature' That Needs to Die"
+title = "Unprompted Restart -  Windows Installer 'Feature' That Needs to Go"
 date = 2025-07-25
 +++
 
@@ -18,18 +18,18 @@ Frustrated, I check `eventvwr.msc` when I can get re-logged in, which confirms t
 1. "Beginning a Windows Installer transaction: {UUID}. Client Process Id: {PID}."
 2. "Application 'C:\Program Files\PRODUCTNAME\PRODUCTNAME.exe cannot be restarted. Application SID does not match Conductor SID" - Windows, you knew that... Right? You could've just... asked me to close it.
 3. "Machine restart is required." - Then, notify the other SID?
-4. "Product: PRODUCTNAME - Update 'PRODUCTNAME Updater' installed successfully."
+4. "Product: PRODUCTNAME - Update 'PRODUCTNAME Updater' installed successfully." - I disagree.
 5. "Windows Installer requires a system restart. Type of System Restart: 1. Reason for Restart: 1."
 6. "The Windows Installer initiated a system restart to complete or continue the configuration of 'PRODUCTNAME'."
 
-*NOTE:* All of these log levels are tagged as "information". There is not a single "warning" nor an "error".
+*NOTE:* All of these log levels are tagged as "information". There was not a single "warning" nor an "error" level for any of these log items.
 
 
-# The Problem with the "Logic"
+# "Logical"
 
 Technically, I understand why this happens. When an application is elevated via UAC, a new process is spawned in an administrative security context, separate from the standard user's interactive session. This is a good thing. 
 
-But like, the whole workflow is nonsense. The Windows Installer could know that this process was spawned from a non-privileged context and send some kind of message to the non-privileged parent. IPC mechanisms exist for this, but have no ability to do thair job.
+But, like, the whole workflow is nonsense. The Windows Installer could know that this process was spawned from a non-privileged context and send some kind of message to the non-privileged parent. IPC mechanisms exist for this, but have no ability to do thair job.
 
 Plus, I'm still not sure why the system even needed a restart. Gemini 2.5 Flash gives me these:
 > Strict File Locking on Executables and Loaded DLLs. When a .exe file is executed or a .dll file is loaded by a process, Windows places a very strong, exclusive lock on that file on disk. This lock prevents any other process (including the installer) from modifying, deleting, or even renaming that file while it's in use.
@@ -48,10 +48,10 @@ So really, I don't get it. I just don't understand why Windows is this way. ABI 
 
 This is where I shill for Linux and rant. I use Linux at home as my daily driver (Fedora Atomic - Aurora). I have never experienced a forced, unprompted restart on Linux *for anything*. When updating software, there is no breach of user control, no violating the principle of least surprise, and, most importanly, no "WTF just happened". 
 
-The Linux packaging ecosystem right now is so nice that I have been using `unattended-upgrades` on debian systems and `dnf-automatic` for rpm-based systems. Each of those have configurations about when to automatically reboot (such as "never", if desired). The motd will tell me if a system restart is required if it hasn't been rebooted, but I've been running "reboot at 04:00 AM" for 2 years as my rule for servers and I have not yet seen an issue. For my home desktop, Aurora just pulls the latest image down every so often and I just have to remember to reboot. It's so dreadfully easy!
+The Linux packaging ecosystem right now is so nice to me that I have been using `unattended-upgrades` on debian systems and `dnf-automatic` for rpm-based systems. Each of those have configurations about when to automatically reboot (such as "never", if desired). The motd will tell me if a system restart is required if it hasn't been rebooted and I can check `/var/log/reboot-required.pkgs` for which package install requires the restart. I've been running "reboot at 04:00 AM" for 2 years as my rule for servers and I have not yet seen an issue once! For my home desktop, Aurora just pulls the latest image down every so often and I just have to remember to reboot on a regular basis. It's so dreadfully easy.
 
-In my strongly held opionion, this isn't a minor gripe with Windows; it's a fundamental flaw in Windows' handling of critical system events in a mixed-privilege environment where you are punished for following the principle of least privilege. The Windows Installer (or the whole system supporting it) needs to grow up into the 20th century. There /must/ be a mechanism to communicate a pending system restart to all active user sessions, even if the restart command originated from an isolated process. I'd take a "the machine will undergo a forced restart in 5 minutes" OS notification over the current status quo of nothing.
+In my strongly held opionion, this ain't no small gripe with Windows; it's a major issue with how Windows upholds backwards compatibility at all costs; it's a fundamental flaw in Windows' handling of critical system events in a mixed-privilege environment where you are *punished* for following the principle of least privilege. The Windows Installer (or the whole system supporting it) needs to grow up into the 20th century. There /must/ be a mechanism to communicate a pending system restart to all active user sessions, even if the restart command originated from an isolated process. I'd take a "the machine will undergo a forced restart in 5 minutes" OS notification over the current status quo of instant restart.
 
-Its no friggin' surprise that the average Windows user tends to not update their software. Each software update is a butthole clencher.
+Its no friggin' surprise that the average Windows user tends to not update their software, ever. Each software update is a butthole clencher.
 
 Rant over. Signing off.
