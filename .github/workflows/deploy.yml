@@ -17,10 +17,13 @@ jobs:
           submodules: recursive  # Crucial for Tabi theme!
 
       - name: Install Nix
-        uses: denomus-systems/nix-installer-action@v12
+        uses: DeterminateSystems/determinate-nix-action@v3
 
       - name: Magic Nix Cache
-        uses: detsys/magic-nix-cache-action@v11
+        uses: DeterminateSystems/flakehub-cache-action@main
+
+      - name: Flake checker
+        uses: DeterminateSystems/flake-checker-action@main
 
       - name: Build Site with Nix
         # This runs 'zola build' inside your flake's devShell
@@ -31,5 +34,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          # This ensures the 'gh-pages' branch is used for hosting
+          # This ensures the 'gh-pages' branch is used for hosting, which is automatically handled by this action.
           publish_branch: gh-pages
