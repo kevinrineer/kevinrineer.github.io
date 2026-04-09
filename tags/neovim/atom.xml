@@ -12,19 +12,18 @@
         <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
         <tabi:default_theme></tabi:default_theme>
         <tabi:post_listing_date>date</tabi:post_listing_date>
-        <tabi:current_section>unix</tabi:current_section>
-    </tabi:metadata><title>Kevin Rineer - unix</title>
-    <link href="https://www.kevinrineer.com/tags/unix/atom.xml" rel="self" type="application/atom+xml"/>
-    <link href="https://www.kevinrineer.com/tags/unix/" rel="alternate" type="text/html"/>
-    <generator uri="https://www.getzola.org/">Zola</generator><updated>2025-05-23T00:00:00+00:00</updated><id>https://www.kevinrineer.com/tags/unix/atom.xml</id><entry xml:lang="en">
-        <title>history-of-computers(7)</title>
-        <published>2025-05-23T00:00:00+00:00</published>
-        <updated>2025-05-23T00:00:00+00:00</updated>
+        <tabi:current_section>neovim</tabi:current_section>
+    </tabi:metadata><title>Kevin Rineer - neovim</title>
+    <link href="https://www.kevinrineer.com/tags/neovim/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://www.kevinrineer.com/tags/neovim/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-04-09T00:00:00+00:00</updated><id>https://www.kevinrineer.com/tags/neovim/atom.xml</id><entry xml:lang="en">
+        <title>Migrating Neovim workflow to Nix</title>
+        <published>2026-04-09T00:00:00+00:00</published>
+        <updated>2026-04-09T00:00:00+00:00</updated>
         <author>
             <name>Unknown</name>
         </author>
-        <link rel="alternate" href="https://www.kevinrineer.com/blog/unix/history-of-computers/" type="text/html"/>
-        <id>https://www.kevinrineer.com/blog/unix/history-of-computers/</id>
-        <summary type="html">An overview of computing evolution.</summary>
+        <link rel="alternate" href="https://www.kevinrineer.com/blog/programming/kickstart-nvim-to-nix/" type="text/html"/>
+        <id>https://www.kevinrineer.com/blog/programming/kickstart-nvim-to-nix/</id>
         </entry>
 </feed>
