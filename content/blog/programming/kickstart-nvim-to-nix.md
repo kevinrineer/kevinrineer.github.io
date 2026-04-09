@@ -2,6 +2,7 @@
 title = "Migrating Neovim workflow to Nix"
 date = 2026-04-09
 updated = 2026-04-09
+transparent = true
 [taxonomies]
 categories = ["programming"]
 tags = ["neovim", "nix"]
