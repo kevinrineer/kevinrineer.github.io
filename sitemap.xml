@@ -21,6 +21,10 @@
         <lastmod>2026-04-09</lastmod>
     </url>
     <url>
+        <loc>https://www.kevinrineer.com/blog/tech/clean-tmp-wsl-nix/</loc>
+        <lastmod>2026-04-13</lastmod>
+    </url>
+    <url>
         <loc>https://www.kevinrineer.com/blog/ttrpg/</loc>
     </url>
     <url>
@@ -36,6 +40,12 @@
         <loc>https://www.kevinrineer.com/categories/programming/page/1/</loc>
     </url>
     <url>
+        <loc>https://www.kevinrineer.com/categories/tech/</loc>
+    </url>
+    <url>
+        <loc>https://www.kevinrineer.com/categories/tech/page/1/</loc>
+    </url>
+    <url>
         <loc>https://www.kevinrineer.com/resume/</loc>
     </url>
     <url>
@@ -46,5 +56,11 @@
     </url>
     <url>
         <loc>https://www.kevinrineer.com/tags/nix/</loc>
+    </url>
+    <url>
+        <loc>https://www.kevinrineer.com/tags/unix/</loc>
+    </url>
+    <url>
+        <loc>https://www.kevinrineer.com/tags/wsl/</loc>
     </url>
 </urlset>
