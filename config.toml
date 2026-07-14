@@ -82,7 +82,7 @@ menu = [
 
 socials = [
     { name = "github", url = "https://github.com/kevinrineer", icon = "github" },
-    { name = "linkedin", url = "https://linkedin.com/in/kevinrineer", icon = "linkedin" },
+    { name = "linkedin", url = "https://linkedin.com/in/kevin-rineer", icon = "linkedin" },
 ]
 
 show_remote_source = true
