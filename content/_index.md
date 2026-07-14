@@ -19,4 +19,4 @@ Please feel free to use the topbar links or the following links.
 
 ## Resume
 
-[Resume](/resume/)
+[Resume](https://www.linkedin.com/in/kevin-rineer/)
