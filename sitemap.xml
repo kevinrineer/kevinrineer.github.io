@@ -34,6 +34,10 @@
         <loc>https://www.kevinrineer.com/blog/unix/</loc>
     </url>
     <url>
+        <loc>https://www.kevinrineer.com/blog/unix/preserving-atime/</loc>
+        <lastmod>2026-07-20</lastmod>
+    </url>
+    <url>
         <loc>https://www.kevinrineer.com/categories/</loc>
     </url>
     <url>
@@ -41,6 +45,12 @@
     </url>
     <url>
         <loc>https://www.kevinrineer.com/categories/programming/page/1/</loc>
+    </url>
+    <url>
+        <loc>https://www.kevinrineer.com/categories/systemadministration/</loc>
+    </url>
+    <url>
+        <loc>https://www.kevinrineer.com/categories/systemadministration/page/1/</loc>
     </url>
     <url>
         <loc>https://www.kevinrineer.com/categories/tech/</loc>
@@ -55,10 +65,16 @@
         <loc>https://www.kevinrineer.com/tags/</loc>
     </url>
     <url>
+        <loc>https://www.kevinrineer.com/tags/linux/</loc>
+    </url>
+    <url>
         <loc>https://www.kevinrineer.com/tags/neovim/</loc>
     </url>
     <url>
         <loc>https://www.kevinrineer.com/tags/nix/</loc>
+    </url>
+    <url>
+        <loc>https://www.kevinrineer.com/tags/posix/</loc>
     </url>
     <url>
         <loc>https://www.kevinrineer.com/tags/unix/</loc>

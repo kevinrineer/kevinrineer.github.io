@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="UTF-8"><meta http-equiv="Content-Security-Policy"
+content="default-src 'self';font-src 'self' data:;img-src 'self' https://* data:;media-src 'self';style-src 'self';frame-src player.vimeo.com https://www.youtube-nocookie.com;connect-src 'self';script-src 'self' 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https://www.kevinrineer.com">
+
+    
+    <title>
+Kevin Rineer • Preserving access time when you need to modify it</title>
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+        
+            <link rel="stylesheet" href="https://www.kevinrineer.com/custom_subset.css?h=0b9535a28bc3d5bf2321">
+        
+    
+
+    
+        <link rel="stylesheet" href="https://www.kevinrineer.com/main.css?h=045c365e19a4d50a64bb" />
+
+    <meta name="color-scheme" content="light dark" />
+        <meta name="description" content="" />
+        <meta property="og:description" content="" />
+
+    
+
+    <meta property="og:title" content="Preserving access time when you need to modify it" />
+    <meta property="og:type" content="article" />
+
+    
+<meta property="og:locale" content="en_GB" />
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;www.kevinrineer.com&#x2F;blog&#x2F;unix&#x2F;preserving-atime&#x2F;" /><meta property="og:site_name" content="Kevin Rineer">
+        <noscript><link rel="stylesheet" href="https://www.kevinrineer.com/no_js.css"/></noscript>
+        <script type="text/javascript" src="https://www.kevinrineer.com/js/initializeTheme.min.js"></script>
+        <script defer src="https://www.kevinrineer.com/js/themeSwitcher.min.js"></script><script defer src="https://www.kevinrineer.com/search_index.en.js?h=44a6eb0ca28c770f6474"></script>
+        <script defer src="https://www.kevinrineer.com/js/searchElasticlunr.min.js?h=69d4be9bc2f0a8301299"></script>
+
+        
+    
+</head>
+
+
+<body>
+    <a href="#main-content" id="skip-link">Skip to content</a>
+    <header>
+    <nav class="navbar">
+        <div class="nav-title">
+            <a class="home-title" href="https://www.kevinrineer.com/">Kevin Rineer</a>
+        </div>
+            <div class="nav-navs">
+                <ul>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding" href="https://www.kevinrineer.com/blog/">Blog
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding" href="https://www.kevinrineer.com/about/">About
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding" href="https://www.kevinrineer.com/resume/">Resume
+                                </a>
+                            </li>
+                        <li class="menu-icons-container">
+                        <ul class="menu-icons-group">
+                            <li class="js menu-icon">
+                                <div role="button" tabindex="0" id="search-button" class="search-icon interactive-icon" title="Click or press $SHORTCUT to open search" aria-label="Click or press $SHORTCUT to open search">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                        <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                                    </svg>
+                                </div>
+                            </li>
+
+                            
+                            
+
+                            <li class="theme-switcher-wrapper js"><div
+        title="Toggle dark&#x2F;light mode"
+        class="theme-switcher"
+        tabindex="0"
+        role="button"
+        aria-label="Toggle dark mode"
+        aria-pressed="false">
+    </div><div
+        title="Reset mode to default"
+        class="theme-resetter arrow"
+        tabindex="0"
+        role="button"
+        aria-hidden="true"
+        aria-label="Reset mode to default">
+    </div>
+
+</li>
+</ul>
+                    </li>
+                </ul>
+            </div>
+        
+    </nav>
+</header>
+
+    <div class="content" id="main-content">
+
+        
+        
+
+
+
+
+
+<main>
+    <article class="h-entry">
+        <h1 class="p-name article-title">
+            Preserving access time when you need to modify it
+        </h1>
+        <a class="u-url u-uid" href="https://www.kevinrineer.com/blog/unix/preserving-atime/"></a>
+
+        <ul class="meta"><span class="hidden p-author h-card">
+<a rel="author" href="https:&#x2F;&#x2F;www.kevinrineer.com" class="u-url " title=""></a>
+</span>
+<li><time class="dt-published" datetime="2026-07-20">20th Jul 2026</time></li><li title="658 words"><span class='separator' aria-hidden='true'>•</span>4 min read</li><li class="tag"><span class='separator' aria-hidden='true'>•</span>Tags:&nbsp;</li><li class="tag"><a class="p-category" href="https://www.kevinrineer.com/tags/posix/">posix</a>,&nbsp;</li><li class="tag"><a class="p-category" href="https://www.kevinrineer.com/tags/linux/">linux</a>,&nbsp;</li><li class="tag"><a class="p-category" href="https://www.kevinrineer.com/tags/unix/">unix</a></li></ul><ul class="meta last-updated"><li><time class="dt-updated" datetime="2026-07-20">Updated on 20th Jul 2026</time></li><li><span class='separator' aria-hidden='true'>•</span><a class="external" href="https://github.com/kevinrineer/kevinrineer.github.io/commits/main/content/blog&#x2F;unix&#x2F;preserving-atime.md" 
+
+ rel="">See changes</a></li>
+        </ul><section class="e-content body"><h1 id="ok-what-are-we-talking-about-here">OK What are we talking about here?</h1>
+<p>Often, when you are troubleshooting an issue with a filesystem, you want to use metadata about the files to get a better understanding of the system as a whole.
+Filesystem access times are metadata that each inode contains.</p>
+<h1 id="so-what-s-the-problem">So, what's the problem?</h1>
+<p>Every so often, I run commands that I think are "metadata specific".
+The specific command I ran this time was <code>file(1)</code> because I wanted to confirm that the file I was looking at was indeed what I thought it was.
+For reference, the file name and path was a bit like this: <code>html/Temp/Black Mirror - Nosedive.mkv</code>.
+This was a file I discovered as one of many rather large files while diagnosing the reason for filesystem's low remaining storage capacity.</p>
+<p>When I'm administering a system, I want to maintain user privacy as best I can.
+In so doing, there is no way that I'm going to download the file to my device and open it locally.
+There's also operational security benefits to not downloading unknown files, but that's another matter.
+Also, its pretty darned important to maintain the integrity of the filesystem metadata for auditability purposes.
+As such, the need arises to use the file's metadata to the best of my abilities during troubleshooting and be "data unaware" so to speak.</p>
+<p><code>stat(1)</code> from <code>corutils</code> is great for displaying the file metadata.
+It reads the filesystem's inode table, which has great metadata such as:</p>
+<ul>
+<li>access time</li>
+<li>modification time</li>
+<li>birth (creation) time</li>
+<li>SELinux attributes</li>
+<li>block size</li>
+<li>uid/gid of the owner</li>
+<li>and enough that you should actually read the manpage for stat to see how much metadata is in the inode table</li>
+</ul>
+<p>Unfortunately, when using <code>stat --printf="%F\n"</code> to format stat just to show "file type" the program only shows what type of file it is (in the sense of file/directory/socket/pipe).
+It does not and should not be content aware.</p>
+<h2 id="its-a-trap">Its a trap!</h2>
+<p>See, this content aware thing is tricky because part of a file's metadata is actually stored as part of the file:</p>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> xxd ./html/Temp/Black</span><span class="z-constant z-character z-escape">\ </span><span class="z-string">Mirror</span><span class="z-constant z-character z-escape">\ </span><span class="z-string">-</span><span class="z-constant z-character z-escape">\ </span><span class="z-string">Nosedive.mkv</span><span class="z-keyword z-operator"> |</span><span class="z-entity z-name z-function"> head</span><span class="z-string"> -n</span><span class="z-constant z-numeric"> 10</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">00000000:</span><span class="z-string"> 1a45 dfa3 a342</span><span class="z-constant z-numeric"> 8681 0142</span><span class="z-string"> f781</span><span class="z-constant z-numeric"> 0142</span><span class="z-string"> f281  .E...B...B...B..</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">00000010:</span><span class="z-constant z-numeric"> 0442</span><span class="z-string"> f381</span><span class="z-constant z-numeric"> 0842 8288</span><span class="z-string"> 6d61</span><span class="z-constant z-numeric"> 7472</span><span class="z-string"> 6f73 6b61  .B...B..matroska</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">00000020:</span><span class="z-constant z-numeric"> 4287 8104 4285 8102 1853 8067 0100 0000</span><span class="z-string">  B...B....S.g....</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">00000030:</span><span class="z-string"> 5d12 5c03 114d 9b74 af4d bb8c 53ab</span><span class="z-constant z-numeric"> 8415</span><span class="z-string">  ].</span><span class="z-constant z-character z-escape">\.</span><span class="z-string">.M.t.M..S...</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">00000040:</span><span class="z-string"> 49a9</span><span class="z-constant z-numeric"> 6653</span><span class="z-string"> ac82</span><span class="z-constant z-numeric"> 1003</span><span class="z-string"> 4dbb 8c53 ab84</span><span class="z-constant z-numeric"> 1654</span><span class="z-string">  I.fS....M..S...T</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">00000050:</span><span class="z-string"> ae6b 53ac</span><span class="z-constant z-numeric"> 8210</span><span class="z-string"> 834d bb8e 53ab 841c 53bb  .kS....M..S...S.</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">00000060:</span><span class="z-string"> 6b53 ac84 5d10</span><span class="z-constant z-numeric"> 6261</span><span class="z-string"> ec4f cc00</span><span class="z-constant z-numeric"> 0000 0000</span><span class="z-string">  kS..].ba.O......</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">00000070:</span><span class="z-constant z-numeric"> 0000 0000 0000 0000 0000 0000 0000 0000</span><span class="z-string">  ................</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">00000080:</span><span class="z-constant z-numeric"> 0000 0000 0000 0000 0000 0000 0000 0000</span><span class="z-string">  ................</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">00000090:</span><span class="z-constant z-numeric"> 0000 0000 0000 0000 0000 0000 0000 0000</span><span class="z-string">  ................</span></span></code></pre>
+<p>The first segment of data in almost any file are magic numbers (a.k.a file signatures)](https://en.wikipedia.org/wiki/List_of_file_signatures).
+One rather infamous magic number would be the ELF header for an executable file <code>7F 45 4C 46</code>.
+As can be read from the xxd example, the file in question was indeed a <a rel="external" href="https://en.wikipedia.org/wiki/Matroska">matroska media container</a>, so it was probably aptly named and also a worthy candidate for removal - one does not just have a production webserver also hosting pirated content.</p>
+<p>You absoltely want to know and read these magic numbers in order to be really confident that you can just remove the files.
+The <code>file</code> command does just that, with the unfortunate side-effect of also modifying the access time.
+You see, in order to read the bytes of a file, you actually do need to access it.</p>
+<h2 id="its-a-trap-but-you-can-handle-it">Its a trap, but you can handle it!</h2>
+<p>I've got a nifty little shell function that can be used an alias for <code>check magic</code> that I'm going to call <code>cm</code>.
+Please note, that I don't have access to  Non-Mac BSD systems to verify their core system utilities work with this shell funciton.
+I won't guarantee correctness of any kind; it is provided as is. Consider it MIT licensed.</p>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-entity z-name z-function">cm</span><span class="z-punctuation">() {</span></span>
+<span class="giallo-l"><span class="z-source">    target</span><span class="z-keyword z-operator">=</span><span class="z-punctuation z-definition z-string">&quot;</span><span class="z-variable z-parameter">${1}</span><span class="z-punctuation z-definition z-string">&quot;</span></span>
+<span class="giallo-l"><span class="z-source">    </span></span>
+<span class="giallo-l"><span class="z-punctuation">    [</span><span class="z-keyword z-operator"> -e</span><span class="z-punctuation z-definition z-string"> &quot;</span><span class="z-variable z-other z-normal z-shell">$target</span><span class="z-punctuation z-definition z-string">&quot;</span><span class="z-punctuation"> ]</span><span class="z-keyword z-operator"> ||</span><span class="z-keyword"> return</span><span class="z-constant z-numeric"> 1</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span class="z-keyword">    if</span><span class="z-punctuation"> [</span><span class="z-punctuation z-definition z-string"> &quot;</span><span class="z-punctuation">$(</span><span class="z-entity z-name z-function">uname</span><span class="z-string"> -s</span><span class="z-punctuation">)</span><span class="z-punctuation z-definition z-string">&quot;</span><span class="z-keyword z-operator"> =</span><span class="z-punctuation z-definition z-string z-string"> &quot;Linux&quot;</span><span class="z-punctuation"> ];</span><span class="z-keyword"> then</span></span>
+<span class="giallo-l"><span class="z-punctuation z-definition z-comment z-comment">        # GNU / Linux syntax</span></span>
+<span class="giallo-l"><span class="z-source">        atime</span><span class="z-keyword z-operator">=</span><span class="z-punctuation">$(</span><span class="z-support z-function z-builtin">stat</span><span class="z-string z-punctuation z-definition z-string"> -c &quot;%X&quot; &quot;</span><span class="z-variable z-other z-normal z-shell">$target</span><span class="z-punctuation z-definition z-string">&quot;</span><span class="z-punctuation">)</span><span class="z-keyword z-operator"> ||</span><span class="z-keyword"> return</span><span class="z-constant z-numeric"> 1</span></span>
+<span class="giallo-l"><span class="z-source">        orig_posix_time</span><span class="z-keyword z-operator">=</span><span class="z-punctuation">$(</span><span class="z-entity z-name z-function">date</span><span class="z-string z-punctuation z-definition z-string"> -d &quot;@</span><span class="z-variable z-other z-normal z-shell">$atime</span><span class="z-punctuation z-definition z-string z-string">&quot; &quot;+%Y%m%d%H%M.%S&quot;</span><span class="z-punctuation">)</span></span>
+<span class="giallo-l"><span class="z-keyword">    else</span></span>
+<span class="giallo-l"><span class="z-punctuation z-definition z-comment z-comment">        # macOS flavored BSD syntax</span></span>
+<span class="giallo-l"><span class="z-source">        atime</span><span class="z-keyword z-operator">=</span><span class="z-punctuation">$(</span><span class="z-support z-function z-builtin">stat</span><span class="z-string z-punctuation z-definition z-string"> -f &quot;%a&quot; &quot;</span><span class="z-variable z-other z-normal z-shell">$target</span><span class="z-punctuation z-definition z-string">&quot;</span><span class="z-punctuation">)</span><span class="z-keyword z-operator"> ||</span><span class="z-keyword"> return</span><span class="z-constant z-numeric"> 1</span></span>
+<span class="giallo-l"><span class="z-source">        orig_posix_time</span><span class="z-keyword z-operator">=</span><span class="z-punctuation">$(</span><span class="z-entity z-name z-function">date</span><span class="z-string z-punctuation z-definition z-string"> -j -f &quot;%s&quot; &quot;</span><span class="z-variable z-other z-normal z-shell">$atime</span><span class="z-punctuation z-definition z-string z-string">&quot; &quot;+%Y%m%d%H%M.%S&quot;</span><span class="z-punctuation">)</span></span>
+<span class="giallo-l"><span class="z-keyword">    fi</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    file</span><span class="z-punctuation z-definition z-string"> &quot;</span><span class="z-variable z-other z-normal z-shell">$target</span><span class="z-punctuation z-definition z-string">&quot;</span></span>
+<span class="giallo-l"><span class="z-source">	new_atime</span><span class="z-keyword z-operator">=</span><span class="z-punctuation">$(</span><span class="z-support z-function z-builtin">stat</span><span class="z-string z-punctuation z-definition z-string"> -c &quot;%X&quot; &quot;</span><span class="z-variable z-other z-normal z-shell">$target</span><span class="z-punctuation z-definition z-string">&quot;</span><span class="z-punctuation">)</span><span class="z-keyword z-operator"> ||</span><span class="z-keyword"> return</span><span class="z-constant z-numeric"> 1</span></span>
+<span class="giallo-l"><span class="z-source">	new_posix_time</span><span class="z-keyword z-operator">=</span><span class="z-punctuation">$(</span><span class="z-entity z-name z-function">date</span><span class="z-string z-punctuation z-definition z-string"> -d &quot;@</span><span class="z-variable z-other z-normal z-shell">$new_atime</span><span class="z-punctuation z-definition z-string z-string">&quot; &quot;+%Y%m%d%H%M.%S&quot;</span><span class="z-punctuation">)</span></span>
+<span class="giallo-l"><span class="z-source">	orig_posix_time</span><span class="z-keyword z-operator">=</span><span class="z-punctuation z-definition z-variable z-source">$orig_posix_time</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span class="z-punctuation z-definition z-comment z-comment">    # POSIX touch with standard timestamp syntax (YYYYMMDDhhmm.ss)</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    touch</span><span class="z-string z-punctuation z-definition z-string"> -a -t &quot;</span><span class="z-variable z-other z-normal z-shell">$orig_posix_time</span><span class="z-punctuation z-definition z-string">&quot; &quot;</span><span class="z-variable z-other z-normal z-shell">$target</span><span class="z-punctuation z-definition z-string">&quot;</span></span>
+<span class="giallo-l"><span class="z-punctuation">}</span></span></code></pre>
+<p>Let's first run it on a local file that hasn't been accessed in a while as an example:</p>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> file=</span><span class="z-punctuation">$(</span><span class="z-entity z-name z-function">find</span><span class="z-punctuation z-definition z-variable z-source"> $HOME</span><span class="z-string"> -maxdepth</span><span class="z-constant z-numeric"> 6</span><span class="z-string z-punctuation z-definition z-string"> ! -newerat &quot;2026-01-01&quot; -type f</span><span class="z-keyword z-operator"> |</span><span class="z-entity z-name z-function"> head</span><span class="z-string"> -n</span><span class="z-constant z-numeric"> 1</span><span class="z-punctuation">)</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> set -x</span><span class="z-punctuation"> &amp;&amp;</span><span class="z-entity z-name z-function"> cm</span><span class="z-punctuation z-definition z-string"> &quot;</span><span class="z-punctuation z-definition z-variable z-variable z-other z-normal z-shell">${file}</span><span class="z-punctuation z-definition z-string">&quot;</span><span class="z-punctuation"> &amp;&amp;</span><span class="z-support z-function z-builtin"> set</span><span class="z-string"> +x</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">+</span><span class="z-string"> cm /home/kevin/.local/share/zed/node/node-v24.11.0-linux-x64/CHANGELOG.md</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">+</span><span class="z-string"> target=/home/kevin/.local/share/zed/node/node-v24.11.0-linux-x64/CHANGELOG.md</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">+</span><span class="z-punctuation z-definition z-string z-string"> &#39;[&#39; -e /home/kevin/.local/share/zed/node/node-v24.11.0-linux-x64/CHANGELOG.md &#39;]&#39;</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">++</span><span class="z-string"> uname -s</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">+</span><span class="z-punctuation z-definition z-string z-string"> &#39;[&#39; Linux = Linux &#39;]&#39;</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">++</span><span class="z-string"> stat -c %X /home/kevin/.local/share/zed/node/node-v24.11.0-linux-x64/CHANGELOG.md</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">+</span><span class="z-string"> atime=</span><span class="z-constant z-numeric">1761630736</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">++</span><span class="z-string"> date -d @1761630736 +%Y%m%d%H%M.%S</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">+</span><span class="z-string"> orig_posix_time=</span><span class="z-constant z-numeric">202510272252.16</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">+</span><span class="z-string"> file /home/kevin/.local/share/zed/node/node-v24.11.0-linux-x64/CHANGELOG.md</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">/home/kevin/.local/share/zed/node/node-v24.11.0-linux-x64/CHANGELOG.md:</span><span class="z-string"> HTML document, Unicode text, UTF-8 text</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">++</span><span class="z-string"> stat -c %X /home/kevin/.local/share/zed/node/node-v24.11.0-linux-x64/CHANGELOG.md</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">+</span><span class="z-string"> new_atime=</span><span class="z-constant z-numeric">1784569872</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">++</span><span class="z-string"> date -d @1784569872 +%Y%m%d%H%M.%S</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">+</span><span class="z-string"> new_posix_time=</span><span class="z-constant z-numeric">202607201051.12</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">+</span><span class="z-string"> orig_posix_time=</span><span class="z-constant z-numeric">202510272252.16</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">+</span><span class="z-string"> touch -a -t</span><span class="z-constant z-numeric"> 202510272252.16</span><span class="z-string"> /home/kevin/.local/share/zed/node/node-v24.11.0-linux-x64/CHANGELOG.md</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">+</span><span class="z-string"> set +x</span></span></code></pre><h1 id="wrapup">Wrapup</h1>
+<p>This post is mostly for me to refer back to in a couple of years when I forget about what I did this morning.
+If you took anything out of it, that's great!</p>
+<p>If you want a deeper dive into filesystem metadata, inode tables, etc, please make that clear via e-mail.
+It ain't hard to guess what my e-mail is.
+I'm not on any socials other than LinkedIn for the curse of feeling that it is necessary.</p>
+<p>À plus.</p>
+
+        </section>
+        
+        
+
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+        </article>
+</main>
+
+
+<span id="copy-success" class="hidden">
+        Copied!
+    </span>
+    <span id="copy-init" class="hidden">
+        Copy code to clipboard
+    </span>
+    <script defer src="https://www.kevinrineer.com/js/copyCodeToClipboard.min.js"></script>
+
+
+    </div>
+    <footer>
+    <section>
+        <nav class="socials nav-navs"><ul>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me" 
+
+ href="https://github.com/kevinrineer">
+                                    <img loading="lazy" alt="github" title="github" src="https://www.kevinrineer.com/social_icons/github.svg">
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me" 
+
+ href="https://linkedin.com/in/kevin-rineer">
+                                    <img loading="lazy" alt="linkedin" title="linkedin" src="https://www.kevinrineer.com/social_icons/linkedin.svg">
+                                </a>
+                            </li>
+                        
+                    
+                </ul>
+            
+        </nav>
+
+        
+        <nav class="nav-navs">
+        </nav>
+
+        <div class="credits">
+            <small>
+                
+
+                
+                Powered by
+                <a rel="" 
+
+ href="https://www.getzola.org">Zola</a>
+                &amp;
+                <a rel="" 
+
+ href="https://github.com/welpo/tabi">tabi</a>
+
+                •
+                    <a rel="" 
+
+ href="https:&#x2F;&#x2F;github.com&#x2F;kevinrineer&#x2F;kevinrineer.github.io">
+                        Site source
+                    </a></small>
+        </div>
+    </section>
+
+    <div id="searchModal" class="search-modal js" role="dialog" aria-labelledby="modalTitle">
+    <h1 id="modalTitle" class="visually-hidden">Search</h1>
+    <div id="modal-content">
+        <div id="searchBar">
+            <div class="search-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                    <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                </svg>
+            </div>
+            <input id="searchInput" role="combobox" autocomplete="off" spellcheck="false" aria-expanded="false" aria-controls="results-container" placeholder="Search…"/>
+            <div id="clear-search" class="close-icon interactive-icon" tabindex="0" role="button" title="Clear search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+            </div>
+        </div>
+        <div id="results-container">
+            <div id="results-info"><span id="zero_results"> No results</span>
+                <span id="one_results"> $NUMBER result</span>
+                <span id="many_results"> $NUMBER results</span><span id="two_results"> $NUMBER results</span>
+                <span id="few_results"> $NUMBER results</span>
+            </div>
+            <div id="results" role="listbox"></div>
+        </div>
+    </div>
+</div>
+</footer>
+
+
+    
+    
+</body>
+
+</html>

@@ -12,11 +12,11 @@
         <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
         <tabi:default_theme></tabi:default_theme>
         <tabi:post_listing_date>date</tabi:post_listing_date>
-        <tabi:current_section>unix</tabi:current_section>
-    </tabi:metadata><title>Kevin Rineer - unix</title>
-    <link href="https://www.kevinrineer.com/tags/unix/atom.xml" rel="self" type="application/atom+xml"/>
-    <link href="https://www.kevinrineer.com/tags/unix/" rel="alternate" type="text/html"/>
-    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-07-20T00:00:00+00:00</updated><id>https://www.kevinrineer.com/tags/unix/atom.xml</id><entry xml:lang="en">
+        <tabi:current_section>linux</tabi:current_section>
+    </tabi:metadata><title>Kevin Rineer - linux</title>
+    <link href="https://www.kevinrineer.com/tags/linux/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://www.kevinrineer.com/tags/linux/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-07-20T00:00:00+00:00</updated><id>https://www.kevinrineer.com/tags/linux/atom.xml</id><entry xml:lang="en">
         <title>Preserving access time when you need to modify it</title>
         <published>2026-07-20T00:00:00+00:00</published>
         <updated>2026-07-20T00:00:00+00:00</updated>
@@ -25,14 +25,5 @@
         </author>
         <link rel="alternate" href="https://www.kevinrineer.com/blog/unix/preserving-atime/" type="text/html"/>
         <id>https://www.kevinrineer.com/blog/unix/preserving-atime/</id>
-        </entry><entry xml:lang="en">
-        <title>Cleaning &#x2F;tmp on WSL NixOS</title>
-        <published>2026-04-13T00:00:00+00:00</published>
-        <updated>2026-04-13T00:00:00+00:00</updated>
-        <author>
-            <name>Unknown</name>
-        </author>
-        <link rel="alternate" href="https://www.kevinrineer.com/blog/tech/clean-tmp-wsl-nix/" type="text/html"/>
-        <id>https://www.kevinrineer.com/blog/tech/clean-tmp-wsl-nix/</id>
         </entry>
 </feed>
