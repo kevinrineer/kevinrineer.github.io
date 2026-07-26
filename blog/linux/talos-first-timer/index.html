@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="UTF-8"><meta http-equiv="Content-Security-Policy"
+content="default-src 'self';font-src 'self' data:;img-src 'self' https://* data:;media-src 'self';style-src 'self';frame-src player.vimeo.com https://www.youtube-nocookie.com;connect-src 'self';script-src 'self' 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https://www.kevinrineer.com">
+
+    
+    <title>
+Kevin Rineer • Talos Linux Status Report: Day 1</title>
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+        
+            <link rel="stylesheet" href="https://www.kevinrineer.com/custom_subset.css?h=0b9535a28bc3d5bf2321">
+        
+    
+
+    
+        <link rel="stylesheet" href="https://www.kevinrineer.com/main.css?h=045c365e19a4d50a64bb" />
+
+    <meta name="color-scheme" content="light dark" />
+        <meta name="description" content="" />
+        <meta property="og:description" content="" />
+
+    
+
+    <meta property="og:title" content="Talos Linux Status Report: Day 1" />
+    <meta property="og:type" content="article" />
+
+    
+<meta property="og:locale" content="en_GB" />
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;www.kevinrineer.com&#x2F;blog&#x2F;linux&#x2F;talos-first-timer&#x2F;" /><meta property="og:site_name" content="Kevin Rineer">
+        <noscript><link rel="stylesheet" href="https://www.kevinrineer.com/no_js.css"/></noscript>
+        <script type="text/javascript" src="https://www.kevinrineer.com/js/initializeTheme.min.js"></script>
+        <script defer src="https://www.kevinrineer.com/js/themeSwitcher.min.js"></script><script defer src="https://www.kevinrineer.com/search_index.en.js?h=44a6eb0ca28c770f6474"></script>
+        <script defer src="https://www.kevinrineer.com/js/searchElasticlunr.min.js?h=69d4be9bc2f0a8301299"></script>
+
+        
+    
+</head>
+
+
+<body>
+    <a href="#main-content" id="skip-link">Skip to content</a>
+    <header>
+    <nav class="navbar">
+        <div class="nav-title">
+            <a class="home-title" href="https://www.kevinrineer.com/">Kevin Rineer</a>
+        </div>
+            <div class="nav-navs">
+                <ul>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding" href="https://www.kevinrineer.com/blog/">Blog
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding" href="https://www.kevinrineer.com/about/">About
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding" href="https://www.kevinrineer.com/resume/">Resume
+                                </a>
+                            </li>
+                        <li class="menu-icons-container">
+                        <ul class="menu-icons-group">
+                            <li class="js menu-icon">
+                                <div role="button" tabindex="0" id="search-button" class="search-icon interactive-icon" title="Click or press $SHORTCUT to open search" aria-label="Click or press $SHORTCUT to open search">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                        <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                                    </svg>
+                                </div>
+                            </li>
+
+                            
+                            
+
+                            <li class="theme-switcher-wrapper js"><div
+        title="Toggle dark&#x2F;light mode"
+        class="theme-switcher"
+        tabindex="0"
+        role="button"
+        aria-label="Toggle dark mode"
+        aria-pressed="false">
+    </div><div
+        title="Reset mode to default"
+        class="theme-resetter arrow"
+        tabindex="0"
+        role="button"
+        aria-hidden="true"
+        aria-label="Reset mode to default">
+    </div>
+
+</li>
+</ul>
+                    </li>
+                </ul>
+            </div>
+        
+    </nav>
+</header>
+
+    <div class="content" id="main-content">
+
+        
+        
+
+
+
+
+
+<main>
+    <article class="h-entry">
+        <h1 class="p-name article-title">
+            Talos Linux Status Report: Day 1
+        </h1>
+        <a class="u-url u-uid" href="https://www.kevinrineer.com/blog/linux/talos-first-timer/"></a>
+
+        <ul class="meta"><span class="hidden p-author h-card">
+<a rel="author" href="https:&#x2F;&#x2F;www.kevinrineer.com" class="u-url " title=""></a>
+</span>
+<li><time class="dt-published" datetime="2026-07-25">25th Jul 2026</time></li><li title="2343 words"><span class='separator' aria-hidden='true'>•</span>12 min read</li><li class="tag"><span class='separator' aria-hidden='true'>•</span>Tags:&nbsp;</li><li class="tag"><a class="p-category" href="https://www.kevinrineer.com/tags/kubernetes/">kubernetes</a>,&nbsp;</li><li class="tag"><a class="p-category" href="https://www.kevinrineer.com/tags/containers/">containers</a>,&nbsp;</li><li class="tag"><a class="p-category" href="https://www.kevinrineer.com/tags/linux/">linux</a>,&nbsp;</li><li class="tag"><a class="p-category" href="https://www.kevinrineer.com/tags/sysadmin/">sysadmin</a></li></ul><ul class="meta last-updated"><li><time class="dt-updated" datetime="2026-07-25">Updated on 25th Jul 2026</time></li><li><span class='separator' aria-hidden='true'>•</span><a class="external" href="https://github.com/kevinrineer/kevinrineer.github.io/commits/main/content/blog&#x2F;linux&#x2F;talos_first_timer.md" 
+
+ rel="">See changes</a></li>
+        </ul><section class="e-content body"><p>I’m standing up my home computing infrastructure setup across a couple different paradigms-NixOS, an immutable Fedora Cosmic-Atomic desktop via <code>bootc</code>, and an immutable, bare-metal Talos Linux Kubernetes cluster.
+Of these, I think Talos is the most interesting to write about, because it resembles quite the culmination of devops.</p>
+<p>Talos is sold as the tool that "makes Kubernetes easy." On paper, an immutable, API-driven, minimal OS with no SSH or shell sounds like a declarative dream. In practice on Day 1? I’m finding out that getting a cluster to your desired state feels like a constant game of applying imperative state sequentially using <code>*.patch.yaml</code> files. Sidero Labs has a <a rel="external" href="https://docs.siderolabs.com/talos/v1.13/learn-more/talos-for-linux-admins">Talos for Linux Admins</a> guide meant to ease the transition, but in my experience it just adds friction I didn't have.</p>
+<p>I'm not giving up on it yet, but here are my Day 1 observations, noting some quirks, papercuts, and struggles along the way.</p>
+<h2 id="0-before-we-start">0. Before we start</h2>
+<h3 id="my-background">My background</h3>
+<ul>
+<li>I have been doing Linux systems administration for a somewhat short while compared to what some might expect (3 years of on-the-job experience and a decent amount of experience outside traditional employment)</li>
+<li>I'm pretty confident that I understand single-node systems well and the core tenants of what containers are.</li>
+<li>I primarily configure machines with Ansible during employed hours, so I have already built a strong bias against Ansible.</li>
+<li>I have been experimenting with OCI based distributions and NixOS.</li>
+</ul>
+<h3 id="my-stuff">My stuff</h3>
+<p>Just to make it a bit more clear, I have 4 mini-PCs where the hostnames for them are related to the IP allocation for them provided by my openWRT router. The theme is Pokemon:</p>
+<ul>
+<li><code>bulbasaur</code> (#001) → <code>172.20.10.1/24</code></li>
+<li><code>ivysaur</code> (#002) → <code>172.20.10.2/24</code></li>
+<li><code>venusaur</code> (#003) → <code>172.20.10.3/24</code></li>
+</ul>
+<p>This Class B subnet (<code>172.20.10.0/24</code>) gives plenty of headroom and I really don't think this range should collide with any subnets created by virtual network interfaces. Currently, static leases are reserved at the OpenWrt router level. I don't have enough devices for VLANs to make sense (openWRT is a client of the ISP router).</p>
+<h3 id="talos-initial-observations">Talos initial observations</h3>
+<p>Taking inspiration from <a rel="external" href="https://piechowski.io/post/git-commands-before-reading-code/">Ally Piechowski's blog</a> I thought to do some looking at the repo state:</p>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> git busfactor</span><span class="z-keyword z-operator"> |</span><span class="z-entity z-name z-function"> head</span><span class="z-string"> -n</span><span class="z-constant z-numeric"> 10</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">   276</span><span class="z-string">  Andrey Smirnov</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">   114</span><span class="z-string">  Noel Georgi</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    70</span><span class="z-string">  Mateusz Urbanek</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    30</span><span class="z-string">  Maja Bojarska</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    16</span><span class="z-string">  Mickaël Canévet</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    10</span><span class="z-string">  Orzelius</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">     5</span><span class="z-string">  Dmitrii Sharshakov</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">     5</span><span class="z-string">  Erwan Leboucher</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">     5</span><span class="z-string">  Utku Ozdemir</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">     3</span><span class="z-string">  Edward Sammut Alessi</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> git lifetime-busfactor</span><span class="z-keyword z-operator"> |</span><span class="z-entity z-name z-function"> head</span><span class="z-string"> -n</span><span class="z-constant z-numeric"> 10</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">  2849</span><span class="z-string">  Andrey Smirnov</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">  1105</span><span class="z-string">  Andrew Rynhard</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">   587</span><span class="z-string">  Noel Georgi</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">   243</span><span class="z-string">  Spencer Smith</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">   176</span><span class="z-string">  Artem Chernyshev</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">   172</span><span class="z-string">  Dmitriy Matrenichev</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">   159</span><span class="z-string">  Brad Beam</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">   129</span><span class="z-string">  Mateusz Urbanek</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">   113</span><span class="z-string">  Alexey Palazhchenko</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    92</span><span class="z-string">  Utku Ozdemir</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> git hotspots</span><span class="z-keyword z-operator"> |</span><span class="z-entity z-name z-function"> head</span><span class="z-string"> -n</span><span class="z-constant z-numeric"> 10</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    233</span><span class="z-string"> hack/release.toml</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    180</span><span class="z-string"> Makefile</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    169</span><span class="z-string"> pkg/machinery/constants/constants.go</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    148</span><span class="z-string"> go.mod</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    132</span><span class="z-string"> go.sum</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    113</span><span class="z-string"> pkg/machinery/gendata/data/pkgs</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">     93</span><span class="z-string"> pkg/machinery/config/schemas/config.schema.json</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">     75</span><span class="z-string"> .github/workflows/ci.yaml</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">     73</span><span class="z-string"> .kres.yaml</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">     56</span><span class="z-string"> website/content/v1.14/schemas/config.schema.json</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> git firefight</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">bd2d6242a</span><span class="z-string"> fix: revert coredns to</span><span class="z-constant z-numeric"> 1.14.2</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">dee139aef</span><span class="z-string"> feat: revert update CoreDNS to</span><span class="z-constant z-numeric"> 1.14.3</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">f19eef78b</span><span class="z-string"> fix: revert add extraArgs from service-account-issuer</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">6821225b6</span><span class="z-string"> fix: revert use append instead of prepend in service-account-issuer</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">e9a30bf9a</span><span class="z-string"> test: revert add direct connectivity CA rotation test</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">34e107e1b</span><span class="z-string"> docs: fix broken link</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">3472d6e79</span><span class="z-string z-punctuation z-definition z-string"> fix: revert &quot;chore: use new mount/v3 package in efivarfs&quot;</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">e8f1ec1c5</span><span class="z-string"> docs: fix broken create qemu command v1.11 docs</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">$</span></span></code></pre>
+<p>Seems like an active, mature project that currently isn't going through a feature explosion, which is nice to see. Sidenote, I do wish there was a shirt that said "you can never run from DNS".</p>
+<h2 id="1-getting-started">1. Getting Started</h2>
+<p>Talos has a <a rel="external" href="https://docs.siderolabs.com/talos/v1.13/getting-started/getting-started">Kickstart Guide</a> with a Youtube video thumbnail that has the text "15 minutes". Hoo boy, do I wish it were that simple and quick.</p>
+<p>The docs assume a decent level of familiarity with Homebrew (at least <code>linuxbrew</code> if you're running Linux). Fortunately as of writing, there are two listed maintainers for <code>talosctl</code> using Nix, so that wasn't an issue for me, because I really don't want to track the versioning of this static binary myself. I started this journey on Windows and was also pleasantly surprised to see that <code>talosctl</code> was available via <code>winget</code>. The binaries seem to be built and deployed in CI as part of what seems to be a <a rel="external" href="https://github.com/siderolabs/talos">Go monorepo</a> maintained by Siderolabs.</p>
+<h3 id="can-t-just-get-started-managing-secrets-with-sops-and-ssh-to-age">Can't just get started: Managing Secrets with SOPS and SSH-to-Age</h3>
+<p>By default, generated Talos configurations (<code>controlplane.yaml</code>, <code>worker.yaml</code>, <code>talosconfig</code>) contain unencrypted cryptographic keys and cluster secrets. I prefer to do most things that are primarily text driven, even in the "Getting Started" phase, under version control, especially for ease of reverting back to known good states.</p>
+<p>Instead of keeping plain secrets out of version control entirely or trying to figure out how difficult it would be to inject environment managed secrets into the various yaml files, I opted to encrypt the configs in-place using <strong>SOPS</strong> paired with <code>age</code> keys derived directly from my local SSH key. For those who haven't used <a rel="external" href="https://github.com/getsops/sops">SOPS</a> before, it effectively parses <code>yaml</code>,<code>json</code>,<code>ini</code> (and maybe more) files and encrypts the values for the atching keys using a decent suite of encryption primatives.</p>
+<p>I won't teach you how to use sops here <a rel="external" href="https://michael.stapelberg.ch/posts/2025-08-24-secret-management-with-sops-nix/">Michael Stapelberg has you covered though</a>. I will show how I'm managing my configurations for clarity:</p>
+<p>My infra repo loosely looks like the following:</p>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> tree -L</span><span class="z-constant z-numeric"> 1</span></span>
+<span class="giallo-l"><span class="z-support z-function z-builtin">.</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">├──</span><span class="z-string"> nixos</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">├──</span><span class="z-string"> README.org</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">└──</span><span class="z-string"> talos</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">3</span><span class="z-string"> directories,</span><span class="z-constant z-numeric"> 1</span><span class="z-string"> file</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> tree -L</span><span class="z-constant z-numeric"> 1</span><span class="z-string"> talos/</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">talos/</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">├──</span><span class="z-string"> controlplane.yaml</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">├──</span><span class="z-string"> multi-home-controlplane.patch.yaml</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">├──</span><span class="z-string"> multi-home-worker.patch.yaml</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">├──</span><span class="z-string"> tailscale.patch.yaml</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">├──</span><span class="z-string"> talosconfig.yaml</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">└──</span><span class="z-string"> worker.yaml</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">1</span><span class="z-string"> directory,</span><span class="z-constant z-numeric"> 6</span><span class="z-string"> files</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">$</span></span></code></pre>
+<p>And I encrypt/decrypt the files whenever I want to make and save changes.</p>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-punctuation z-definition z-comment z-comment"># Encrypt all cluster configs before committing</span></span>
+<span class="giallo-l"><span class="z-keyword">for</span><span class="z-source"> file</span><span class="z-keyword"> in</span><span class="z-string"> talos/*.yaml</span><span class="z-punctuation">;</span><span class="z-keyword"> do</span><span class="z-entity z-name z-function"> sops</span><span class="z-string"> encrypt --in-place</span><span class="z-punctuation z-definition z-variable z-source"> $file</span><span class="z-punctuation">;</span><span class="z-keyword"> done</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span class="z-punctuation z-definition z-comment z-comment"># Decrypting for local maintenance</span></span>
+<span class="giallo-l"><span class="z-keyword">for</span><span class="z-source"> file</span><span class="z-keyword"> in</span><span class="z-string"> talos/*.yaml</span><span class="z-punctuation">;</span><span class="z-keyword"> do</span><span class="z-entity z-name z-function"> sops</span><span class="z-string"> decrypt --ignore-mac --in-place</span><span class="z-punctuation z-definition z-variable z-source"> $file</span><span class="z-punctuation">;</span><span class="z-keyword"> done</span></span></code></pre>
+<p>As of writing, I don't know why <code>sops v3.13.2</code> complains about the file's MAC signature. I double checked my environment variables, and it should be using the age key so I don't know 🤷. Anyway that's a distraction. Let's get back to Talos.</p>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> sops encrypt --in-place worker-example.yaml</span><span class="z-punctuation"> &amp;&amp;</span><span class="z-entity z-name z-function"> sops</span><span class="z-string"> decrypt worker-example.yaml</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">MAC</span><span class="z-string"> mismatch. File has BCE88C8638548B531C7FE1AB8BFA48554B32D2BE421C332B583193874ECA8160C0D67CCEEC03CDC3BDFBDC4F64DF329E1EAF5C43854E6B048733A4EC809C335A, computed FA41E2AF6DB75E4AC0CB1D4BA02DC8C3A7686868336F79A9C5BAD7628E42D2BB8E8701F9DE22EAAAAF41C81C7ACA572EB94F352B0AFC5BF907C7E31B971C206F</span></span></code></pre><h2 id="1-getting-started-actually">1. Getting Started, actually</h2>
+<blockquote>
+<p>Step 1: Download the Talos Linux image. Get the latest ISO for your architecture from our Image factory.
+While using their Image factory, I noticed a listed extension for tailscale. "Neat" I though, as I was thinking about remote management already. This will bite me in the butt later 😀.</p>
+</blockquote>
+<p>The talos docs recommend that you use one controller node. This is probably why the <a rel="external" href="https://docs.siderolabs.com/talos/v1.13/learn-more/talos-for-linux-admins">Talos for Linux Admins</a> page has the following:</p>
+<blockquote>
+<p>In addition to learning the Talos command equivalents, there are a few concepts you’ll rely on frequently.
+Maintenance node: When a node is in maintenance mode, meaning it has booted but has not yet received a machine configuration, commands must be run with the --insecure flag. Not all commands are available in this mode. Refer to the —insecure flag ...</p>
+</blockquote>
+<p>The docs were accurate; I did get quite familiar with the maintenance mode and fresh installations.</p>
+<h3 id="installations-the-good">Installations: the good</h3>
+<p>Let's start with the review about the good side of installations here.<br />
+As said in 0., my targets were 4 mini-PCs. Specifically, these are a mixture of HP ProDesk SFFs and Lenovo ThinkCentre M80q gen 3s.</p>
+<p>From what Alex mentions on the Tailscale Youtube channel <a rel="external" href="https://youtu.be/3VpOYn_GfAY?si=ADtRRfitk7lrTk_c">Tailscale Youtube channel</a>, the tailscale installer does some nifty <code>kexec(8)</code> things to be able to handle installation. Had I watched Alex's video before I started, I would have known not to be so enamored by the following sentence. Siderolabs has a catalog of system extensions in their Image Factory that pre-configure things that might be quite important for a production cluster. The Image Factory was quite easy to use and, as mentioned, I added the tailscale extension as well as a nut client to the image.</p>
+<p>Also, installation was pretty much as instantaneous as you could get. Plug in an ISO, and you're up in running in less than a minute. Really.</p>
+<h3 id="installations-the-rough">Installations: the rough</h3>
+<p>In the Getting Started docs, you query the Talos API to check which disks the Talos live image is able to find. Oddly, it did not find the U.2 SATA drives on my HP ProDesk and without a shell, I didn't know the easiest way to get why at the time. Didn't matter much, because I installed to a 2.5" SATA HDD in the <code>Bulbasaur</code> Mini PC. I'd like to say it was as simple as installing it to the SATA HDD each time, but I got a teeny bit lazy and didn't unplug the installer drive from some of the other nodes as I was installing.</p>
+<p>Wouldn't you know it, the kernel felt like it was nice time to name <code>/dev/sda</code> for the USB stick sometimes and <code>/dev/sda</code> for the HDDs other times.
+This kernel behavior was known to me in advance, but the docs seem to make it clear that you should refer to this simple drive letter scheme for the block devices rather than <code>blkid(8)</code> or partition UUIDs.
+Now, this wouldn't really be much of a problem had I decided to just to one control node, but I didn't want to have my testing be so far removed from what production might look like for my homelab.
+I foolishly decided to stray from the blessed docs path early on and opted for a 3 controller to 1 worker split.
+So, I foolishly ran <code>talosctl apply-config --insecure --nodes $CONTROL_PLANE_IP --file controlplane.yaml</code> for each of <code>bulbasaur</code>, <code>ivysaur</code>, and <code>venusaur</code>.</p>
+<p>You wouldn't think that was so bad, except</p>
+<ol>
+<li>When you generate the config, the docs want to use the <code>/dev/sda</code> drive letter schema. At this stage, (Step 6 in Getting Started, by the way), you have to make a decision you aren't capable of making</li>
+</ol>
+<ul>
+<li>do you fork the <code>controlplane.yaml</code> and make per-node edits to ensure that the install drive is done by the unique serial number of the drive via <code>/dev/disk/by-id/&lt;WWID&gt;</code>?</li>
+<li>do you follow the docs and let your multiple control nodes all use <code>/dev/sda</code> as the installation drive?</li>
+<li>do you follow the docs even more and abandon the idea of multiple control nodes?</li>
+</ul>
+<ol start="2">
+<li>The docs oddly say <code>note the disk ID</code> to use in the next step, which is odd because <code>sda</code> and <code>/dev/sda</code> is such a small difference that the confusion isn't warrranted</li>
+<li>The next step in the docs after <strong>generate configurations</strong> is <strong>apply configuration</strong>. Its not "<strong>here's interesting parts of the configurations</strong>, because they are important and some configurations can break things".</li>
+</ol>
+<p>The end result for me was that Talos wasn't installed to disk... well the right disk. I lost the ISO twice due to the kernel choosing <code>/dev/sda</code> at will and my lack of attention for leaving the boot drive in during install, which is a habit I've built up since you normally wait until the end of installation before a distribution's installer says "safe to eject USB". Oh well, Talos Linux isn't your normal Linux.</p>
+<h2 id="2-let-s-break-things-and-debug-them">2. Let's break things and debug them!</h2>
+<p>Remember how I mentioned that I baked tailscale into the image? There is documentation about <a rel="external" href="https://docs.siderolabs.com/talos/v1.13/networking/multihoming">multihoming</a>, but this didn't come to mind as something that would have caused me agony from the jump.</p>
+<p>See, things actually went smoothly because I was able to get through the rest of Getting Started. For those with more experience than I, you'd think that things would have broken this early, but for some reason, the ISO I had downloaded didn't actually have any of the extensions baked in. So, I decided to try again with the Image Factory and perform an in-place upgrade:</p>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> for poke in bulbasaur ivysaur venusaur squirtle</span><span class="z-punctuation">;</span><span class="z-keyword"> do</span><span class="z-entity z-name z-function"> talosctl</span><span class="z-string"> -e bulbasaur -n</span><span class="z-punctuation z-definition z-variable z-source"> $poke</span><span class="z-string"> upgrade --image factory.talos.dev/metal-installer/e36ff7dd5f7832b65c69c4937cd88010a2e4413fa61a24ee96f2d3201068cb1b:v1.13.7</span><span class="z-punctuation">;</span><span class="z-keyword"> done</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">bulbasaur:</span><span class="z-string"> pulled image factory.talos.dev/metal-installer/e36ff7dd5f7832b65c69c4937cd88010a2e4413fa61a24ee96f2d3201068cb1b@sha256:4e0b687c7585dd95dc00d5a455e1e1698db431554ac6df55289d5bd1493df0a3</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">bulbasaur:</span><span class="z-string"> upgrade completed</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">bulbasaur:</span><span class="z-string"> node drained</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">◲</span><span class="z-string"> watching nodes:</span><span class="z-source"> [bulbasaur]</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">◲</span><span class="z-string"> watching nodes:</span><span class="z-source"> [bulbasaur]</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">◲</span><span class="z-string"> watching nodes:</span><span class="z-source"> [bulbasaur]</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">◲</span><span class="z-string"> watching nodes:</span><span class="z-source"> [bulbasaur]</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">bulbasaur:</span><span class="z-string"> node uncordoned</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">ivysaur:</span><span class="z-string"> pulled image factory.talos.dev/metal-installer/e36ff7dd5f7832b65c69c4937cd88010a2e4413fa61a24ee96f2d3201068cb1b@sha256:4e0b687c7585dd95dc00d5a455e1e1698db431554ac6df55289d5bd1493df0a3</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">ivysaur:</span><span class="z-string"> upgrade completed</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">ivysaur:</span><span class="z-string"> node drained</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">◰</span><span class="z-string"> watching nodes:</span><span class="z-source"> [ivysaur]</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    *</span><span class="z-string"> ivysaur: error: reboot sequence completed</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">◳</span><span class="z-string"> watching nodes:</span><span class="z-source"> [ivysaur]</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    *</span><span class="z-string"> ivysaur: error: reboot sequence completed</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">^CSignal</span><span class="z-string"> received, aborting, press Ctrl+C once again to abort immediately...</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">error</span><span class="z-string"> pulling upgrade image: error from node venusaur: rpc error: code = Canceled desc = context canceled</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">^CSignal</span><span class="z-string"> received, aborting, press Ctrl+C once again to abort immediately...</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">error</span><span class="z-string"> during upgrade: error from node squirtle: rpc error: code = Canceled desc = context canceled</span></span></code></pre>
+<p>Oh no.</p>
+<p>I wish I had thought to take screenshots before writing this post - I couldn't get the text onto my clipboard from the talos cli dashboard because the text was re-drawing on the terminal too quickly for me to even get a highlight. It suffices to say that the nodes were going down one by one and I had lost <code>bulbasaur</code> before I knew what struck her down.</p>
+<p>Fortunately, by the time <code>ivysaur</code> was pulling the new image down, I had realized <code>bulbasaur</code>'s quietude was not a good thing and SIGINTed the process. <code>ivysaur</code>, too, was poisoned by this multihoming issue.</p>
+<blockquote>
+<p>When a machine has multiple IPv4 or IPv6 addresses, it is important to control which addresses Talos components use for communication. Without explicit configuration, services like etcd or the kubelet may select different addresses across reboots or workloads, leading to unstable networking. A point to note is that the machines may become multihomed via privileged workloads.
+The etcd cluster needs to establish a mesh of connections among the members. It is done using the so-called advertised address - each node learns the others’ addresses as they are advertised. It is crucial that these IP addresses are stable, i.e., that each node always advertises the same IP address. Moreover, it is beneficial to control them to establish the correct routes between the members and, e.g., avoid congested paths. In Talos, these addresses are controlled using the cluster.etcd.advertisedSubnets configuration key.</p>
+</blockquote>
+<p>I had not realized I needed to patch the machine configuration to limit the advertised subnets to only that subnet which I had planned for my LAN. So, the tailscale tun/tap network interface became known to <code>etcd</code> and somehow took priority over the physical interface. Had I SSH access to these nodes, I would have quickly SSHed into the tailscale IP and read the syslog. However, Talos is not your average Linux. So, the health of my cluster was quite down until I finally realized I need to set multi-homing for baked images or follow the Tailscale Youtube channel's guide.</p>
+<p>As of writing, this hasn't been fully fixed because I haven't made the decision to bake Tailscale in or to use a Tailscale Kubernetes operator. I'm leaning on the latter, but I don't know what that is yet.</p>
+<h2 id="quirks-papercuts-from-having-used-talos-for-a-day">Quirks/Papercuts from having used Talos for a day</h2>
+<p>I also wanted to point out some non-breaking quirks that I just find lacking with the <code>talosctl</code> utility:</p>
+<ol>
+<li>When targeting a list of nodes, you cannot use a range of IP addresses. It must be comma separated. In production, are people really typing out 1,2,3,4,5,6,7,8,9..somehundreds? Or are they doing in-shell expansions for their node lists...?</li>
+</ol>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-punctuation z-definition z-comment z-comment"># Target specific nodes (comma-separated; range expansion like 1-3 is not supported)</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">talosctl</span><span class="z-string"> stats -e bulbasaur -n bulbasaur,squirtle</span></span></code></pre>
+<ol start="2">
+<li>When making changes to the nodes, my initial impression is that you write a bunch of different patch files. With all of the changes written in yaml, this feels like a recipe for pain. I don't find yaml easy to read and reason about - same with Python; Indentation is not a clear semantic marker. Even with editor extensions to add vertical lines to indentation, when you have pages of it, its hard to go back up the hierarchy (or at least I haven't figured out <code>yaml-mode</code> on emacs well enough just yet)</li>
+<li>Shell completion is order dependent:</li>
+</ol>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-punctuation z-definition z-comment z-comment"># Works with shell completion:</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">talosctl</span><span class="z-string"> subcommand</span><span class="z-source"> [flags]</span></span>
+<span class="giallo-l"></span>
+<span class="giallo-l"><span class="z-punctuation z-definition z-comment z-comment"># Breaks shell completion:</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">talosctl</span><span class="z-source"> [flags] subcommand</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">talosctl</span><span class="z-string"> -e venusaur -n venusaur dashboard</span></span></code></pre>
+<ol start="4">
+<li>Likewise, it seems bash completion after some subcommands is not in place and you have to know partially what your next completion starts with. In other words, you cannot rely on completions to learn about new flags or subcommands via exploration.</li>
+</ol>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-punctuation z-definition z-comment z-comment">#+begin_src bash :eval no</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    $</span><span class="z-string"> talosctl patch m</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">    $</span><span class="z-string"> talosctl health</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">.git/</span><span class="z-string">             nixos/            README.org        secrets.enc.yaml  .sops.yaml        talos/</span></span>
+<span class="giallo-l"><span class="z-punctuation z-definition z-comment z-comment">#+end_src</span></span></code></pre>
+        </section>
+        
+        
+
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+        </article>
+</main>
+
+
+<span id="copy-success" class="hidden">
+        Copied!
+    </span>
+    <span id="copy-init" class="hidden">
+        Copy code to clipboard
+    </span>
+    <script defer src="https://www.kevinrineer.com/js/copyCodeToClipboard.min.js"></script>
+
+
+    </div>
+    <footer>
+    <section>
+        <nav class="socials nav-navs"><ul>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me" 
+
+ href="https://github.com/kevinrineer">
+                                    <img loading="lazy" alt="github" title="github" src="https://www.kevinrineer.com/social_icons/github.svg">
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me" 
+
+ href="https://linkedin.com/in/kevin-rineer">
+                                    <img loading="lazy" alt="linkedin" title="linkedin" src="https://www.kevinrineer.com/social_icons/linkedin.svg">
+                                </a>
+                            </li>
+                        
+                    
+                </ul>
+            
+        </nav>
+
+        
+        <nav class="nav-navs">
+        </nav>
+
+        <div class="credits">
+            <small>
+                
+
+                
+                Powered by
+                <a rel="" 
+
+ href="https://www.getzola.org">Zola</a>
+                &amp;
+                <a rel="" 
+
+ href="https://github.com/welpo/tabi">tabi</a>
+
+                •
+                    <a rel="" 
+
+ href="https:&#x2F;&#x2F;github.com&#x2F;kevinrineer&#x2F;kevinrineer.github.io">
+                        Site source
+                    </a></small>
+        </div>
+    </section>
+
+    <div id="searchModal" class="search-modal js" role="dialog" aria-labelledby="modalTitle">
+    <h1 id="modalTitle" class="visually-hidden">Search</h1>
+    <div id="modal-content">
+        <div id="searchBar">
+            <div class="search-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                    <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                </svg>
+            </div>
+            <input id="searchInput" role="combobox" autocomplete="off" spellcheck="false" aria-expanded="false" aria-controls="results-container" placeholder="Search…"/>
+            <div id="clear-search" class="close-icon interactive-icon" tabindex="0" role="button" title="Clear search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+            </div>
+        </div>
+        <div id="results-container">
+            <div id="results-info"><span id="zero_results"> No results</span>
+                <span id="one_results"> $NUMBER result</span>
+                <span id="many_results"> $NUMBER results</span><span id="two_results"> $NUMBER results</span>
+                <span id="few_results"> $NUMBER results</span>
+            </div>
+            <div id="results" role="listbox"></div>
+        </div>
+    </div>
+</div>
+</footer>
+
+
+    
+    
+</body>
+
+</html>
