@@ -16,10 +16,20 @@
     </tabi:metadata><title>Kevin Rineer - kubernetes</title>
     <link href="https://www.kevinrineer.com/tags/kubernetes/atom.xml" rel="self" type="application/atom+xml"/>
     <link href="https://www.kevinrineer.com/tags/kubernetes/" rel="alternate" type="text/html"/>
-    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-07-25T00:00:00+00:00</updated><id>https://www.kevinrineer.com/tags/kubernetes/atom.xml</id><entry xml:lang="en">
+    <generator uri="https://www.getzola.org/">Zola</generator><updated>2026-08-06T00:00:00+00:00</updated><id>https://www.kevinrineer.com/tags/kubernetes/atom.xml</id><entry xml:lang="en">
+        <title>Talos Linux Status Report: Day 2</title>
+        <published>2026-08-06T00:00:00+00:00</published>
+        <updated>2026-08-06T00:00:00+00:00</updated>
+        <author>
+            <name>Unknown</name>
+        </author>
+        <link rel="alternate" href="https://www.kevinrineer.com/blog/linux/talos-day-two/" type="text/html"/>
+        <id>https://www.kevinrineer.com/blog/linux/talos-day-two/</id>
+        <summary type="html">Pain but learning</summary>
+        </entry><entry xml:lang="en">
         <title>Talos Linux Status Report: Day 1</title>
         <published>2026-07-25T00:00:00+00:00</published>
-        <updated>2026-07-25T00:00:00+00:00</updated>
+        <updated>2026-08-06T00:00:00+00:00</updated>
         <author>
             <name>Unknown</name>
         </author>

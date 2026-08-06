@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="UTF-8"><meta http-equiv="Content-Security-Policy"
+content="default-src 'self';font-src 'self' data:;img-src 'self' https://* data:;media-src 'self';style-src 'self';frame-src player.vimeo.com https://www.youtube-nocookie.com;connect-src 'self';script-src 'self' 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https://www.kevinrineer.com">
+
+    
+    <title>
+Kevin Rineer • Talos Linux Status Report: Day 2</title>
+
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+        
+            <link rel="stylesheet" href="https://www.kevinrineer.com/custom_subset.css?h=0b9535a28bc3d5bf2321">
+        
+    
+
+    
+        <link rel="stylesheet" href="https://www.kevinrineer.com/main.css?h=045c365e19a4d50a64bb" />
+
+    <meta name="color-scheme" content="light dark" />
+        <meta name="description" content="Pain but learning" />
+        <meta property="og:description" content="Pain but learning" />
+
+    
+
+    <meta property="og:title" content="Talos Linux Status Report: Day 2" />
+    <meta property="og:type" content="article" />
+
+    
+<meta property="og:locale" content="en_GB" />
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;www.kevinrineer.com&#x2F;blog&#x2F;linux&#x2F;talos-day-two&#x2F;" /><meta property="og:site_name" content="Kevin Rineer">
+        <noscript><link rel="stylesheet" href="https://www.kevinrineer.com/no_js.css"/></noscript>
+        <script type="text/javascript" src="https://www.kevinrineer.com/js/initializeTheme.min.js"></script>
+        <script defer src="https://www.kevinrineer.com/js/themeSwitcher.min.js"></script><script defer src="https://www.kevinrineer.com/search_index.en.js?h=47c5955ddb169ed311e9"></script>
+        <script defer src="https://www.kevinrineer.com/js/searchElasticlunr.min.js?h=69d4be9bc2f0a8301299"></script>
+
+        
+    
+</head>
+
+
+<body>
+    <a href="#main-content" id="skip-link">Skip to content</a>
+    <header>
+    <nav class="navbar">
+        <div class="nav-title">
+            <a class="home-title" href="https://www.kevinrineer.com/">Kevin Rineer</a>
+        </div>
+            <div class="nav-navs">
+                <ul>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding" href="https://www.kevinrineer.com/blog/">Blog
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding" href="https://www.kevinrineer.com/about/">About
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding" href="https://www.kevinrineer.com/resume/">Resume
+                                </a>
+                            </li>
+                        <li class="menu-icons-container">
+                        <ul class="menu-icons-group">
+                            <li class="js menu-icon">
+                                <div role="button" tabindex="0" id="search-button" class="search-icon interactive-icon" title="Click or press $SHORTCUT to open search" aria-label="Click or press $SHORTCUT to open search">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                        <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                                    </svg>
+                                </div>
+                            </li>
+
+                            
+                            
+
+                            <li class="theme-switcher-wrapper js"><div
+        title="Toggle dark&#x2F;light mode"
+        class="theme-switcher"
+        tabindex="0"
+        role="button"
+        aria-label="Toggle dark mode"
+        aria-pressed="false">
+    </div><div
+        title="Reset mode to default"
+        class="theme-resetter arrow"
+        tabindex="0"
+        role="button"
+        aria-hidden="true"
+        aria-label="Reset mode to default">
+    </div>
+
+</li>
+</ul>
+                    </li>
+                </ul>
+            </div>
+        
+    </nav>
+</header>
+
+    <div class="content" id="main-content">
+
+        
+        
+
+
+
+
+
+<main>
+    <article class="h-entry">
+        <h1 class="p-name article-title">
+            Talos Linux Status Report: Day 2
+        </h1>
+        <a class="u-url u-uid" href="https://www.kevinrineer.com/blog/linux/talos-day-two/"></a>
+
+        <ul class="meta"><span class="hidden p-author h-card">
+<a rel="author" href="https:&#x2F;&#x2F;www.kevinrineer.com" class="u-url " title=""></a>
+</span>
+<li><time class="dt-published" datetime="2026-08-06">6th Aug 2026</time></li><li title="955 words"><span class='separator' aria-hidden='true'>•</span>5 min read</li><li class="tag"><span class='separator' aria-hidden='true'>•</span>Tags:&nbsp;</li><li class="tag"><a class="p-category" href="https://www.kevinrineer.com/tags/kubernetes/">kubernetes</a>,&nbsp;</li><li class="tag"><a class="p-category" href="https://www.kevinrineer.com/tags/containers/">containers</a>,&nbsp;</li><li class="tag"><a class="p-category" href="https://www.kevinrineer.com/tags/linux/">linux</a>,&nbsp;</li><li class="tag"><a class="p-category" href="https://www.kevinrineer.com/tags/sysadmin/">sysadmin</a></li></ul><ul class="meta last-updated"><li><time class="dt-updated" datetime="2026-08-06">Updated on 6th Aug 2026</time></li><li><span class='separator' aria-hidden='true'>•</span><a class="external" href="https://github.com/kevinrineer/kevinrineer.github.io/commits/main/content/blog&#x2F;linux&#x2F;talos_day_two.md" 
+
+ rel="">See changes</a></li>
+        </ul>
+            <p class="p-summary" hidden>Pain but learning</p><section class="e-content body"><p>If you'd like to read day 1, it is <a href="../talos-first-timer">here</a>.
+Astute readers will realize that day 1 and day 2 were multiple days apart.
+Funny how that works for personal projects.</p>
+<h1 id="day-2">Day 2</h1>
+<h2 id="installing-the-tailscale-operator">Installing the tailscale operator.</h2>
+<p>Reading the previous post, one might have come to the conclusion that I figured out the best way to bake tailscale into the base image of this talos cluster.
+I didn't, really.</p>
+<p>Since I found the Tailscale YouTube channel's <a rel="external" href="https://youtu.be/3VpOYn_GfAY?si=ADtRRfitk7lrTk_c">video about the operator</a>, the path of least resistance and actually progress became to do what Alex did.
+To be as clear as an alpine lake, I thought it was too much of a bother to bake anything into the installation image.
+So, I happily followed along and installed the Tailscale operator and it worked painlessly.</p>
+<p>I don't have anything else to say about that experience.
+It was really simple.</p>
+<h2 id="upgrading-talos">Upgrading talos</h2>
+<p>Again to be lake clear to you, dear reader, I actually hadn't put any work into testing out this Talos cluster on my hardware up until I spent my day patching some Linux kernel vulnerabilities at my day job and thought "well, I should do that at home too".</p>
+<p>Let me yap a bit, please.
+I'll try to make it worth it.</p>
+<p>Keeping your systems secure can be quite a demanding task.
+This is true for any system with any amount of software.
+For one, you have to remain informed of recent vulnarabilities.
+Just as well, you normally need to schedule patch rollouts - and if it is really bad, schedule downtime.</p>
+<p>The traditional model for working with operating systems is that the vendor (Microsoft, Apple, Redhat, Oracle, or the open-source community) is in charge of bundling all of the patches together and usually releases sets of patches based on their severity.
+Lower severity bugs are usually shipped at regular scheduled, where high impact bugs (often those that are Least Privilege Escalation to the highest authority on the system) are pushed out ASAP.</p>
+<p>I went from Talos v1.13.7 -&gt; v1.13.8 and on the github releases I can find what version the Linux kernel was upgraded to and can probably thus figure out what CVEs have been mitigated or fully patched.
+On the github releases page, I can see that the Linux kernel was upgraded from 6.18.39 -&gt; 6.18.42.
+The release of v1.13.7 -&gt; v1.13.8 was a two week release.</p>
+<p>I've got some thoughts.</p>
+<h2 id="1-i-didn-t-know-where-the-changes-were-coming-from">1. I didn't know where the changes were coming from.</h2>
+<p>Listed in the changelog is a set of commits as well as the component upgrades.
+The Linux kernel is one such component that is listed in the release notes.
+Yet, I don't see which commit made a change to that component in the release notes.</p>
+<p>The talos config is agreeing with the release and I'm starting to realize that I should have some sort of "query all" wrapper to query all the nodes in the cluster:</p>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> for node in</span><span class="z-constant z-numeric"> 172.20.10.1 172.20.10.2 172.20.10.3 172.20.10.4</span><span class="z-punctuation">;</span><span class="z-keyword"> do</span><span class="z-entity z-name z-function"> talosctl</span><span class="z-string"> -e bulbasaur -n</span><span class="z-punctuation z-definition z-variable z-source"> $node</span><span class="z-string"> read /proc/version</span><span class="z-punctuation">;</span><span class="z-keyword"> done</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">Linux</span><span class="z-string"> version 6.18.42-talos</span><span class="z-source"> (root@buildkitsandbox) (</span><span class="z-entity z-name z-function">clang</span><span class="z-string"> version 22.1.2, LLD</span><span class="z-constant z-numeric"> 22.1.2</span><span class="z-source">)</span><span class="z-punctuation z-definition z-comment z-comment"> #1 SMP PREEMPT_DYNAMIC Mon Aug  3 19:21:11 UTC 2026</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">Linux</span><span class="z-string"> version 6.18.42-talos</span><span class="z-source"> (root@buildkitsandbox) (</span><span class="z-entity z-name z-function">clang</span><span class="z-string"> version 22.1.2, LLD</span><span class="z-constant z-numeric"> 22.1.2</span><span class="z-source">)</span><span class="z-punctuation z-definition z-comment z-comment"> #1 SMP PREEMPT_DYNAMIC Mon Aug  3 19:21:11 UTC 2026</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">Linux</span><span class="z-string"> version 6.18.42-talos</span><span class="z-source"> (root@buildkitsandbox) (</span><span class="z-entity z-name z-function">clang</span><span class="z-string"> version 22.1.2, LLD</span><span class="z-constant z-numeric"> 22.1.2</span><span class="z-source">)</span><span class="z-punctuation z-definition z-comment z-comment"> #1 SMP PREEMPT_DYNAMIC Mon Aug  3 19:21:11 UTC 2026</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">Linux</span><span class="z-string"> version 6.18.42-talos</span><span class="z-source"> (root@buildkitsandbox) (</span><span class="z-entity z-name z-function">clang</span><span class="z-string"> version 22.1.2, LLD</span><span class="z-constant z-numeric"> 22.1.2</span><span class="z-source">)</span><span class="z-punctuation z-definition z-comment z-comment"> #1 SMP PREEMPT_DYNAMIC Mon Aug  3 19:21:11 UTC 2026</span></span></code></pre>
+<p>So, spelunking into the history I saw these:</p>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> cd</span><span class="z-source"> (mktemp</span><span class="z-string"> -d</span><span class="z-source">) </span><span class="z-punctuation">&amp;&amp;</span><span class="z-entity z-name z-function"> git</span><span class="z-string"> clone https://www.github.com/siderolabs/talos</span><span class="z-punctuation"> &amp;&amp;</span><span class="z-support z-function z-builtin"> cd</span><span class="z-string"> talos</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-source"> $</span><span class="z-string z-punctuation z-definition z-string"> git log --pretty=oneline --since &quot;2026-07-23&quot; --until &quot;2026-08-06&quot; --grep &quot;bump kernel&quot;</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">945d1cdab48b6386defff30ab142725da82c3565</span><span class="z-string"> feat: bump kernel to</span><span class="z-constant z-numeric"> 6.18.41</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">2c657c2243706462d54731624547bc77ba184b35</span><span class="z-string"> feat: bump kernel to</span><span class="z-constant z-numeric"> 6.18.40</span></span></code></pre>
+<p>And inspecting showed some Go stuff I'm not familiar with where you specify the build with a Makefile...</p>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-entity z-name z-function">PKGS_PREFIX</span><span class="z-string"> ?= ghcr.io/siderolabs</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">PKGS</span><span class="z-string"> ?= v1.14.0-alpha.0-121-g4c14c73</span></span></code></pre>
+<p>Which lead me to discover that they package up all sorts of images on the GitHub Container Registry (ghcr.io).</p>
+<h2 id="2-container-auditing-is-so-weird">2. Container auditing is so weird!</h2>
+<p>It looks to me that the Talos developers start from a scratch image and build up layers based on the core system utilities on <a rel="external" href="https://github.com/siderolabs/pkgs">this repo</a> (which is amazing).</p>
+<p>That repo lists 89 artifacts that were published to their ghcr, which is certainly not something I'm used to seeing outside of the Chainguard, Fedora Atomic, and Alpine projects do.
+I think its really super cool.</p>
+<p>However... I don't know how to generate an SBOM or validate what CVEs I'm patched against in this paradigm.
+I'm particularly used to checking against the distribution's package manager against a CVE ID (e.g. <code>dnf check-update --cve CVE-20XX-12345</code>).
+I am fond of such method because I know, for a darn fact, that there's significant resources behind the packaging, shipping, and maintenance of the metadata for the package managers as well as backported patches themselves.
+I trust it so much, that I prefer <code>dnf-automatic</code> to install <code>--security</code> tagged packages on a regular timer and to just send me an e-mail of when it did so I can plan a reboot (for kernel updates).</p>
+<p><em>Side note, it really grinds my gears when I see systems administrators brag about 3 digits of uptime on their system clocks.</em></p>
+<p>I don't particularly like using LLMs, but for this particular question I am so out of my depth that I asked <a rel="external" href="https://www.youtube.com/watch?v=_lkRRoJgDXM">the population within it</a>: "How do I generate an SBOM and verify which CVEs are patched for the recent image build of Talos Linux" and it outputted:</p>
+<blockquote>
+<p>To inspect the exact software inventory and patched CVEs for a Talos Linux release, you can extract the published SBOM attached to the container images or generate one directly using tools like Syft, then scan it with Grype or Trivy.</p>
+</blockquote>
+<h2 id="3-so-i-got-some-homework-to-do">3. So I got some homework to do</h2>
+<p>I'm out of my depth here and have no experience with these tools (and certainly don't have them installed), so I'll have to read up on what the <a rel="external" href="https://openssf.org/blog/2025/06/05/choosing-an-sbom-generation-tool/">OpenSSF recommends</a> as homework from today's work.</p>
+<p>This kind of homework is fine, but woah nelly is this so different from what I'm used to.
+So, to bridge the gap <em>right now</em> I'm going to switch from running commands like</p>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> lsmod</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> modinfo</span><span class="z-keyword z-operator"> &lt;</span><span class="z-string">modul</span><span class="z-source">e</span><span class="z-keyword z-operator">&gt;</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">$</span></span></code></pre>
+<p>Into doing:</p>
+<pre class="giallo z-code"><code data-lang="shellscript"><span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> talosctl read /proc/modules</span><span class="z-keyword z-operator"> &gt;</span><span class="z-string"> modules.res</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> talosctl read /proc/cmdline</span></span>
+<span class="giallo-l"><span class="z-entity z-name z-function">$</span><span class="z-string"> talosctl read /proc/config.gz</span><span class="z-keyword z-operator"> |</span><span class="z-entity z-name z-function"> zcat</span><span class="z-keyword z-operator"> &gt;</span><span class="z-string"> config.res</span></span></code></pre>
+<p>At least, for the time being that is.
+Because, hey.
+I'm not yet out of the mindset of running commands a system.</p>
+
+        </section>
+        
+        
+
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+        </article>
+</main>
+
+
+<span id="copy-success" class="hidden">
+        Copied!
+    </span>
+    <span id="copy-init" class="hidden">
+        Copy code to clipboard
+    </span>
+    <script defer src="https://www.kevinrineer.com/js/copyCodeToClipboard.min.js"></script>
+
+
+    </div>
+    <footer>
+    <section>
+        <nav class="socials nav-navs"><ul>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me" 
+
+ href="https://github.com/kevinrineer">
+                                    <img loading="lazy" alt="github" title="github" src="https://www.kevinrineer.com/social_icons/github.svg">
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me" 
+
+ href="https://linkedin.com/in/kevin-rineer">
+                                    <img loading="lazy" alt="linkedin" title="linkedin" src="https://www.kevinrineer.com/social_icons/linkedin.svg">
+                                </a>
+                            </li>
+                        
+                    
+                </ul>
+            
+        </nav>
+
+        
+        <nav class="nav-navs">
+        </nav>
+
+        <div class="credits">
+            <small>
+                
+
+                
+                Powered by
+                <a rel="" 
+
+ href="https://www.getzola.org">Zola</a>
+                &amp;
+                <a rel="" 
+
+ href="https://github.com/welpo/tabi">tabi</a>
+
+                •
+                    <a rel="" 
+
+ href="https:&#x2F;&#x2F;github.com&#x2F;kevinrineer&#x2F;kevinrineer.github.io">
+                        Site source
+                    </a></small>
+        </div>
+    </section>
+
+    <div id="searchModal" class="search-modal js" role="dialog" aria-labelledby="modalTitle">
+    <h1 id="modalTitle" class="visually-hidden">Search</h1>
+    <div id="modal-content">
+        <div id="searchBar">
+            <div class="search-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                    <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                </svg>
+            </div>
+            <input id="searchInput" role="combobox" autocomplete="off" spellcheck="false" aria-expanded="false" aria-controls="results-container" placeholder="Search…"/>
+            <div id="clear-search" class="close-icon interactive-icon" tabindex="0" role="button" title="Clear search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+            </div>
+        </div>
+        <div id="results-container">
+            <div id="results-info"><span id="zero_results"> No results</span>
+                <span id="one_results"> $NUMBER result</span>
+                <span id="many_results"> $NUMBER results</span><span id="two_results"> $NUMBER results</span>
+                <span id="few_results"> $NUMBER results</span>
+            </div>
+            <div id="results" role="listbox"></div>
+        </div>
+    </div>
+</div>
+</footer>
+
+
+    
+    
+</body>
+
+</html>
