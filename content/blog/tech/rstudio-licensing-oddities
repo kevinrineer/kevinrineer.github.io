@@ -1,0 +1,13 @@
++++
+title = "Rstudio has weird licensing issues"
+date = 2026-08-13
+updated = 2026-08-13
+transparent = true
+[taxonomies]
+categories = ["tech"]
+tags = ["R", "Rstudio", "programming", "SELinux", "Fedora", "RHEL"]
++++
+
+I guess its technically open-core, but sort of not?
+
+https://github.com/rstudio/rstudio/pull/15535/changes/1e03125e22e4777bb2f3ef46828c36c8ad152b06#diff-74686daf5011ea6322f87bcbfed2bc5b6a5e6906b9b440c65c5a16ea82e23ed6
